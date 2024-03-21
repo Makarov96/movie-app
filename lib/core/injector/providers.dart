@@ -6,4 +6,15 @@ class Providers {
   static final enviroment = Provider<Environment>(
     (ref) => throw UnimplementedError(),
   );
+  static final httpProvider = Provider<Http>(
+    (ref) {
+      final env = ref.read(enviroment);
+      final enableLogging = env.enableLogging;
+      final dio = Dio(BaseOptions(baseUrl: env.baseUrl));
+      dio.interceptors.addAll([
+        RetryInterceptor(dio: dio, enableLogging: enableLogging),
+      ]);
+      return Http(dio: dio, enableLogging: enableLogging);
+    },
+  );
 }
