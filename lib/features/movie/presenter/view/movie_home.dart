@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class MovieHome extends StatelessWidget {
