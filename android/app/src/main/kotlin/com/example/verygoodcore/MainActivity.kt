@@ -1,0 +1,6 @@
+package com.example.verygoodcore.kueski_challenge
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
