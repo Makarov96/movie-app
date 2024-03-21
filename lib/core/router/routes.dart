@@ -8,6 +8,9 @@ class Routes {
       : name = 'home',
         path = '/';
 
+  Routes.movie()
+      : name = 'movie',
+        path = '/';
   final String name;
   final String path;
 }

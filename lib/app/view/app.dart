@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:kueski_challenge/i18n/translations.g.dart';
+import 'package:kueski_challenge/core/router/app_router.dart';
+import 'package:mobile_dependencies/mobile_dependencies.dart';
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+    return MaterialApp.router(
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        ),
         useMaterial3: true,
-      ),
-      home: Container(
-        child: Text(context.texts.home.title),
       ),
     );
   }
