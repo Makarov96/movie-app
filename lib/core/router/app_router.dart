@@ -1,6 +1,5 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kueski_challenge/core/router/routes.dart';
+import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 final routerProvider = Provider<GoRouter>(
   (ref) {

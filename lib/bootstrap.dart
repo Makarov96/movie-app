@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:kueski_challenge/app/view/app.dart';
 import 'package:kueski_challenge/core/injector/environment.dart';
 import 'package:kueski_challenge/core/injector/overrides.dart';
 import 'package:kueski_challenge/i18n/translations.g.dart';
+import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 Future<void> bootstrap(Environment environment) async {
   final enableLogging = environment.enableLogging;

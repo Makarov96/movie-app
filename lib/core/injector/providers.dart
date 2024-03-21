@@ -1,5 +1,5 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kueski_challenge/core/injector/environment.dart';
+import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class Providers {
   const Providers._();
