@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:kueski_challenge/i18n/translations.g.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -13,12 +13,9 @@ class App extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      home: Container(),
+      home: Container(
+        child: Text(context.texts.home.title),
+      ),
     );
   }
 }
