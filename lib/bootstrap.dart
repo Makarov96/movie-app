@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-
 import 'package:kueski_challenge/app/view/app.dart';
 import 'package:kueski_challenge/core/injector/environment.dart';
 import 'package:kueski_challenge/core/injector/overrides.dart';
@@ -14,12 +13,14 @@ Future<void> bootstrap(Environment environment) async {
   return runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+
       LocaleSettings.useDeviceLocale();
       GoRouter.optionURLReflectsImperativeAPIs = true;
       final app = ProviderScope(
         overrides: overrides(environment),
         child: const App(),
       );
+
       runApp(app);
       FlutterError.onError = (details) {
         if (enableLogging) {
