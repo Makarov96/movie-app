@@ -7,13 +7,14 @@ import 'package:go_router/go_router.dart';
 import 'package:kueski_challenge/app/view/app.dart';
 import 'package:kueski_challenge/core/injector/environment.dart';
 import 'package:kueski_challenge/core/injector/overrides.dart';
+import 'package:kueski_challenge/i18n/translations.g.dart';
 
 Future<void> bootstrap(Environment environment) async {
   final enableLogging = environment.enableLogging;
   return runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-
+      LocaleSettings.useDeviceLocale();
       GoRouter.optionURLReflectsImperativeAPIs = true;
       final app = ProviderScope(
         overrides: overrides(environment),
