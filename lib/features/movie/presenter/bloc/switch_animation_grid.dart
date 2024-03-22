@@ -11,4 +11,15 @@ class SwitchAnimationgrid extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  var switchToGridPM = false;
+  void togglePM() {
+    if (switchToGridPM) {
+      switchToGridPM = false;
+    } else {
+      switchToGridPM = true;
+    }
+
+    notifyListeners();
+  }
 }
