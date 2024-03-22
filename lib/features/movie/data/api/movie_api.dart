@@ -12,8 +12,10 @@ class MovieApi extends MovieRepository {
 
   @override
   Future<HttpResult<MovieResultEntity>> getMovies({int page = 0}) async {
-    final result = await _http.send<MovieResultEntity>(
-      '/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=$page&sort_by=popularity.desc',
+    var path =
+        '/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=$page&sort_by=popularity.desc';
+    final result = await _http.send<MovieResultModel>(
+      path,
       parser: (statucCode, value) => MovieResultModel.fromJson(value),
     );
 
