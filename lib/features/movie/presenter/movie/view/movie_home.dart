@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kueski_challenge/features/movie/presenter/view/page/movie_page.dart';
-import 'package:kueski_challenge/features/movie/presenter/view/page/playing_movies_page.dart';
+import 'package:kueski_challenge/features/movie/presenter/movie/view/page/movie_page.dart';
+import 'package:kueski_challenge/features/movie/presenter/movie/view/page/playing_movies_page.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class MovieHome extends StatelessWidget {
@@ -15,6 +15,7 @@ class MovieHome extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          title: const Text('Kueski Movie App'),
           bottom: const TabBar(
             tabs: [
               Tab(
@@ -32,14 +33,9 @@ class MovieHome extends StatelessWidget {
   }
 }
 
-class MovieLayoutHome extends StatefulWidget {
+class MovieLayoutHome extends StatelessWidget {
   const MovieLayoutHome({super.key});
 
-  @override
-  State<MovieLayoutHome> createState() => _MovieLayoutHomeState();
-}
-
-class _MovieLayoutHomeState extends State<MovieLayoutHome> {
   @override
   Widget build(BuildContext context) {
     return const TabBarView(

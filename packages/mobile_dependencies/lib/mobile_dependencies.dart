@@ -10,3 +10,4 @@ export 'package:equatable/equatable.dart';
 export 'package:flutter_riverpod/flutter_riverpod.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:shared_preferences/shared_preferences.dart';
+export 'package:cached_network_image/cached_network_image.dart';

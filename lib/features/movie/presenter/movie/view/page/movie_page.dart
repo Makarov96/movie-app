@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kueski_challenge/core/router/routes.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
-import 'package:kueski_challenge/features/movie/presenter/bloc/movie_bloc.dart';
+import 'package:kueski_challenge/features/movie/presenter/movie/bloc/movie_bloc.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class MoviesPage extends ConsumerStatefulWidget {
@@ -30,14 +31,17 @@ class _MoviesPageState extends ConsumerState<MoviesPage> {
           },
           toggle: switcher.switchToGrid,
           gridToggle: () => switcher.toggle(),
-          itemBuilder: (context, currentInde, movies) {
+          itemBuilder: (context, currentInde, movie) {
             return KueskieCard(
               onFavoritePressed: () {},
-              imagePath: movies.backdropPath,
-              title: movies.title,
-              popularity: movies.popularity,
-              voteCount: movies.voteCount,
-              voteAverage: movies.voteAverage,
+              onPressedCard: () =>
+                  context.pushNamed(Routes.movieDetails().path, extra: movie),
+              imagePath: movie.backdropPath,
+              title: movie.title,
+              popularity: movie.popularity,
+              voteCount: movie.voteCount,
+              voteAverage: movie.voteAverage,
+              movieId: 'movie-page-${movie.id}',
             );
           },
         );
@@ -50,7 +54,7 @@ class _MoviesPageState extends ConsumerState<MoviesPage> {
           SizedBox(
             height: 200,
           ),
-          CircularProgressIndicator(),
+          Text('Error trying call the api'),
         ],
       ),
     );

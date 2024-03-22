@@ -5,7 +5,7 @@ import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart'
 import 'package:kueski_challenge/features/movie/domain/entity/movie_result_entity.dart';
 
 import 'package:kueski_challenge/features/movie/domain/repository/movie_repository.dart';
-import 'package:kueski_challenge/features/movie/presenter/bloc/movie_bloc.dart';
+import 'package:kueski_challenge/features/movie/presenter/movie/bloc/movie_bloc.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 import 'package:mocktail/mocktail.dart';
 

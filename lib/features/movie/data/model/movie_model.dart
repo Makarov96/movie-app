@@ -1,3 +1,4 @@
+import 'package:kueski_challenge/features/movie/_module/strings/movie_strings.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 
 class MovieModel extends MovieEntity {
@@ -18,6 +19,7 @@ class MovieModel extends MovieEntity {
     required super.voteCount,
   });
 
+  @override
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
@@ -42,14 +44,18 @@ class MovieModel extends MovieEntity {
   factory MovieModel.fromMap(Map<String, dynamic> map) {
     return MovieModel(
       adult: map['adult'] ?? false,
-      backdropPath: map['backdrop_path'] ?? '',
+      backdropPath: map['backdrop_path'] == null
+          ? MovieStrings.alternativeImage
+          : 'http://image.tmdb.org/t/p/w500/${map['backdrop_path']}',
       genreIds: List<int>.from(map['genre_ids']),
       id: map['id']?.toInt() ?? 0,
       originalLanguage: map['original_language'] ?? '',
       originalTitle: map['original_title'] ?? '',
       overview: map['overview'] ?? '',
       popularity: map['popularity']?.toDouble() ?? 0.0,
-      posterPath: map['poster_path'] ?? '',
+      posterPath: map['poster_path'] == null
+          ? MovieStrings.alternativeImage
+          : 'http://image.tmdb.org/t/p/w500/${map['poster_path']}',
       releaseDate: DateTime.parse(map['release_date']),
       title: map['title'] ?? '',
       video: map['video'] ?? false,

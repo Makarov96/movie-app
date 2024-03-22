@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kueski_challenge/core/router/routes.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
-import 'package:kueski_challenge/features/movie/presenter/bloc/playing_movies_bloc.dart';
+import 'package:kueski_challenge/features/movie/presenter/movie/bloc/playing_movies_bloc.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class PlayingMoviesPage extends ConsumerStatefulWidget {
@@ -34,11 +35,14 @@ class _PlayingMoviesPageState extends ConsumerState<PlayingMoviesPage> {
           itemBuilder: (context, currentInde, movie) {
             return KueskieCard(
               onFavoritePressed: () async {},
+              onPressedCard: () =>
+                  context.pushNamed(Routes.movieDetails().path, extra: movie),
               imagePath: movie.backdropPath,
               title: movie.title,
               popularity: movie.popularity,
               voteCount: movie.voteCount,
               voteAverage: movie.voteAverage,
+              movieId: 'playing-movie-${movie.id}',
             );
           },
         );

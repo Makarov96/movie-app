@@ -25,6 +25,7 @@ dependencies:
   kueski_design_system:
     path: ../kueski_design_system
   shared_preferences: ^2.2.2
+  cached_network_image: ^3.3.1
 
 
 
