@@ -49,4 +49,25 @@ class MovieEntity extends Equatable {
         voteAverage,
         voteCount,
       ];
+
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+
+    result.addAll({'adult': adult});
+    result.addAll({'backdrop_path': backdropPath});
+    result.addAll({'genre_ids': genreIds});
+    result.addAll({'id': id});
+    result.addAll({'original_language': originalLanguage});
+    result.addAll({'original_title': originalTitle});
+    result.addAll({'overview': overview});
+    result.addAll({'popularity': popularity});
+    result.addAll({'poster_path': posterPath});
+    result.addAll({'release_date': releaseDate.toString()});
+    result.addAll({'title': title});
+    result.addAll({'video': video});
+    result.addAll({'vote_average': voteAverage});
+    result.addAll({'vote_count': voteCount});
+
+    return result;
+  }
 }
