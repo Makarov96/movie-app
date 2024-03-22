@@ -17,6 +17,9 @@ dependencies:
   equatable: ^2.0.5
   kueski_http:
     path: ../kueski_http
+
+  kueski_design_system:
+    path: ../kueski_design_system
   flutter_localizations:
     sdk: flutter
 dev_dependencies:
