@@ -1,5 +1,5 @@
 import 'package:kueski_challenge/core/router/routes.dart';
-import 'package:kueski_challenge/features/home/presenter/view/movie_home.dart';
+import 'package:kueski_challenge/features/movie/presenter/view/movie_home.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 final routerProvider = Provider<GoRouter>(

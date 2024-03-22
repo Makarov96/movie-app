@@ -14,6 +14,7 @@ dependencies:
   flutter_riverpod: ^2.5.1
   go_router: ^13.2.1
   intl: ^0.18.1
+  equatable: ^2.0.5
   kueski_http:
     path: ../kueski_http
   flutter_localizations:
