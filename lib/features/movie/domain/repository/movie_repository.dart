@@ -7,4 +7,8 @@ abstract class MovieRepository {
   Future<HttpResult<MovieResultEntity>> getMovies({
     int page = 1,
   });
+
+  Future<HttpResult<MovieResultEntity>> playingMovies({
+    int page = 1,
+  });
 }
