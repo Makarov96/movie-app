@@ -55,7 +55,7 @@ class _MoviesPageState extends ConsumerState<MoviesPage> {
           SizedBox(
             height: 200,
           ),
-          Text('Error trying call the api'),
+          Text('Error trying call the api try not'),
         ],
       ),
     );
