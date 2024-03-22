@@ -4,6 +4,7 @@ import 'package:kueski_design_system/kueski_design_system.dart';
 class KueskieCard extends StatelessWidget {
   const KueskieCard({
     super.key,
+    this.isFavorite = false,
     required this.onFavoritePressed,
     required this.imagePath,
     required this.title,
@@ -18,6 +19,7 @@ class KueskieCard extends StatelessWidget {
   final double popularity;
   final int voteCount;
   final double voteAverage;
+  final bool isFavorite;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,7 +57,8 @@ class KueskieCard extends StatelessWidget {
               ),
               child: Icon(
                 Icons.star,
-                color: Colors.white.withOpacity(0.6),
+                color:
+                    isFavorite ? Colors.yellow : Colors.white.withOpacity(0.6),
               ),
             ),
           ),
