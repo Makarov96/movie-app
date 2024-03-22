@@ -10,10 +10,7 @@ class Providers {
     (ref) {
       final env = ref.read(enviroment);
       final enableLogging = env.enableLogging;
-      final dio = Dio(BaseOptions(
-        baseUrl: env.baseUrl,
-        headers: KueskieHeaders.addEntry({'Authorization': env.apiKey}),
-      ));
+      final dio = Dio(BaseOptions(baseUrl: env.baseUrl));
       dio.interceptors.addAll([
         RetryInterceptor(dio: dio, enableLogging: enableLogging),
       ]);

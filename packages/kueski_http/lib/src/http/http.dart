@@ -5,7 +5,7 @@ import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 enum HttpMethod { get, post, patch, put, delete }
 
-class Http {
+final class Http {
   Http({
     required Dio dio,
     required bool enableLogging,

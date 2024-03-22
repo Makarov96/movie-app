@@ -1,7 +1,6 @@
 library kueski_http;
 
 //exports
-export '../src/http/http.dart';
-export '../src/result/http_result.dart';
-export '../src/interceptors/interceptors.dart';
-export '../src/headers/headers.dart';
+export 'package:kueski_http/src/http/http.dart';
+export 'package:kueski_http/src/result/http_result.dart';
+export 'package:kueski_http/src/interceptors/interceptors.dart';

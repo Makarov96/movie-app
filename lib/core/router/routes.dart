@@ -11,10 +11,6 @@ class Routes {
   Routes.movie()
       : name = 'movie',
         path = '/';
-
-  Routes.movieDetails()
-      : name = 'movie-details',
-        path = 'movie-details';
   final String name;
   final String path;
 }

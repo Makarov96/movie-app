@@ -18,7 +18,7 @@ Future<void> bootstrap(Environment environment) async {
       GoRouter.optionURLReflectsImperativeAPIs = true;
       final app = ProviderScope(
         overrides: overrides(environment),
-        child: TranslationProvider(child: const App()),
+        child: const App(),
       );
 
       runApp(app);

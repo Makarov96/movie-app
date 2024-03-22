@@ -5,27 +5,6 @@ sealed class HttpResult<R> {
   factory HttpResult.err(int? statusCode, Object? error) =>
       Err(statusCode: statusCode, error: error);
 
-  bool get isErr {
-    return switch (this) {
-      Err() => true,
-      Ok() => false,
-    };
-  }
-
-  bool get isOk {
-    return switch (this) {
-      Err() => false,
-      Ok() => true,
-    };
-  }
-
-  R get okValue {
-    return switch (this) {
-      Err() => throw AssertionError(),
-      Ok(ok: final ok) => ok,
-    };
-  }
-
   B fold<B>(B Function(int? statusCode, Object? error) l, B Function(R, int) r);
   B when<B>(B Function(int? statusCode, Object? error) l, B Function() loading,
       B Function(R) r) {
