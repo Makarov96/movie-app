@@ -3,33 +3,67 @@ import 'package:flutter/material.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
 import 'package:kueski_challenge/features/movie/presenter/bloc/movie_bloc.dart';
+import 'package:kueski_challenge/features/movie/presenter/view/page/playing_movies_page.dart';
 
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class MovieHome extends StatelessWidget {
   const MovieHome({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: MovieLayoutHome(),
-    );
-  }
-
   static Widget builder(BuildContext _, GoRouterState __) {
     return const MovieHome();
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                text: 'All Moview',
+              ),
+              Tab(
+                text: 'Playing Now',
+              ),
+            ],
+          ),
+        ),
+        body: const MovieLayoutHome(),
+      ),
+    );
+  }
 }
 
-class MovieLayoutHome extends ConsumerStatefulWidget {
+class MovieLayoutHome extends StatefulWidget {
   const MovieLayoutHome({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _MovieLayoutHomeState();
+  State<MovieLayoutHome> createState() => _MovieLayoutHomeState();
 }
 
-class _MovieLayoutHomeState extends ConsumerState<MovieLayoutHome> {
+class _MovieLayoutHomeState extends State<MovieLayoutHome> {
+  @override
+  Widget build(BuildContext context) {
+    return const TabBarView(
+      children: [
+        MoviesPage(),
+        PlayingMoviesPage(),
+      ],
+    );
+  }
+}
+
+class MoviesPage extends ConsumerStatefulWidget {
+  const MoviesPage({super.key});
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _MoviesPageState();
+}
+
+class _MoviesPageState extends ConsumerState<MoviesPage>
+    with AutomaticKeepAliveClientMixin {
   final ScrollController scrollController = ScrollController();
   @override
   void initState() {
@@ -42,7 +76,7 @@ class _MovieLayoutHomeState extends ConsumerState<MovieLayoutHome> {
         scrollController.position.maxScrollExtent) {
       if (MovieBloc.currentPage < MovieBloc.totalPages) {
         ref.read(MovieInjector.movieBloc.notifier).getMovies();
-      } else {}
+      }
     }
   }
 
@@ -51,23 +85,26 @@ class _MovieLayoutHomeState extends ConsumerState<MovieLayoutHome> {
     return CustomScrollView(
       controller: scrollController,
       slivers: [
-        SliverAppBar(
-          pinned: true,
-          actions: [
-            Consumer(
-              builder: (context, ref, widget) {
-                final value = ref.watch(MovieInjector.switchAnimation);
-                return IconButton(
-                  onPressed: () {
-                    value.toggle();
-                  },
-                  icon: Icon(
-                    value.switchToGrid ? Icons.filter_none : Icons.grid_on,
-                  ),
-                );
-              },
-            )
-          ],
+        SliverToBoxAdapter(
+          child: Consumer(
+            builder: (context, ref, widget) {
+              final value = ref.watch(MovieInjector.switchAnimation);
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      value.toggle();
+                    },
+                    icon: Icon(
+                      value.switchToGrid ? Icons.filter_none : Icons.grid_on,
+                    ),
+                  )
+                ],
+              );
+            },
+          ),
         ),
         const MovieListOrGrid(),
       ],
@@ -79,6 +116,9 @@ class _MovieLayoutHomeState extends ConsumerState<MovieLayoutHome> {
     scrollController.removeListener(_listener);
     super.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class MovieListOrGrid extends ConsumerWidget {
