@@ -165,6 +165,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
+  kueski_design_system:
+    dependency: transitive
+    description:
+      path: "packages/kueski_design_system"
+      relative: true
+    source: path
+    version: "0.0.1"
   kueski_http:
     dependency: transitive
     description:

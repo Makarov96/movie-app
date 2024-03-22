@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 
 class MovieModel extends MovieEntity {
