@@ -24,7 +24,7 @@ class MoviewLayoutHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        Text('hello world'),
+        Text('hello world sadd'),
       ],
     );
   }
