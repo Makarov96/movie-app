@@ -1,3 +1,6 @@
 {
-    "title": "Kueski Movie App"
+    "title": "Kueski Movie",
+    "movies": "Movies",
+    "playingMovies": "Playing Movies"
+
 }
