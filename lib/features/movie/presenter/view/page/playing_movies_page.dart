@@ -31,14 +31,14 @@ class _PlayingMoviesPageState extends ConsumerState<PlayingMoviesPage> {
           },
           toggle: switcher.switchToGridPM,
           gridToggle: () => switcher.togglePM(),
-          itemBuilder: (context, currentInde, movies) {
+          itemBuilder: (context, currentInde, movie) {
             return KueskieCard(
-              onFavoritePressed: () {},
-              imagePath: movies.backdropPath,
-              title: movies.title,
-              popularity: movies.popularity,
-              voteCount: movies.voteCount,
-              voteAverage: movies.voteAverage,
+              onFavoritePressed: () async {},
+              imagePath: movie.backdropPath,
+              title: movie.title,
+              popularity: movie.popularity,
+              voteCount: movie.voteCount,
+              voteAverage: movie.voteAverage,
             );
           },
         );
