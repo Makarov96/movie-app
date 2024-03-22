@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/view/page/movie_page.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/view/page/playing_movies_page.dart';
+import 'package:kueski_challenge/i18n/translations.g.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class MovieHome extends StatelessWidget {
@@ -15,14 +16,14 @@ class MovieHome extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Kueski Movie App'),
-          bottom: const TabBar(
+          title: Text(context.texts.home.title),
+          bottom: TabBar(
             tabs: [
               Tab(
-                text: 'All Moview',
+                text: context.texts.home.movies,
               ),
               Tab(
-                text: 'Playing Now',
+                text: context.texts.home.playingMovies,
               ),
             ],
           ),

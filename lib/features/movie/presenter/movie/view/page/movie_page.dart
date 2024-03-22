@@ -48,6 +48,7 @@ class _MoviesPageState extends ConsumerState<MoviesPage> {
       },
       error: (e, s) => const CircularProgressIndicator(),
       loading: () => const Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
