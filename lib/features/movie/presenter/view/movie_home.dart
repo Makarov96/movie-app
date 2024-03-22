@@ -149,7 +149,7 @@ class MovieItem extends ConsumerWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: NetworkImage(
-            movie.backdropPath,
+            'http://image.tmdb.org/t/p/w500/${movie.backdropPath}',
           ),
           fit: BoxFit.cover,
         ),

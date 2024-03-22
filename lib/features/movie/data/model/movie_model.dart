@@ -32,7 +32,7 @@ class MovieModel extends MovieEntity {
     result.addAll({'overview': overview});
     result.addAll({'popularity': popularity});
     result.addAll({'poster_path': posterPath});
-    result.addAll({'release_date': releaseDate.millisecondsSinceEpoch});
+    result.addAll({'release_date': releaseDate.toString()});
     result.addAll({'title': title});
     result.addAll({'video': video});
     result.addAll({'vote_average': voteAverage});
@@ -44,8 +44,7 @@ class MovieModel extends MovieEntity {
   factory MovieModel.fromMap(Map<String, dynamic> map) {
     return MovieModel(
       adult: map['adult'] ?? false,
-      backdropPath:
-          'http://image.tmdb.org/t/p/w500/${map['backdrop_path'] ?? ''}',
+      backdropPath: map['backdrop_path'] ?? '',
       genreIds: List<int>.from(map['genre_ids']),
       id: map['id']?.toInt() ?? 0,
       originalLanguage: map['original_language'] ?? '',
@@ -60,9 +59,4 @@ class MovieModel extends MovieEntity {
       voteCount: map['vote_count']?.toInt() ?? 0,
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory MovieModel.fromJson(String source) =>
-      MovieModel.fromMap(json.decode(source));
 }
