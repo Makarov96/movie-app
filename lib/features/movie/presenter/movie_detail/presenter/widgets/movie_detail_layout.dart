@@ -33,7 +33,7 @@ class MovieDetailLayout extends StatelessWidget {
         Row(
           children: [
             KueskiNetworkCacheImage(
-              imageUrl: movie.posterPath,
+              imageUrl: movie.fullPath,
               fit: BoxFit.cover,
               height: 150,
               width: 100,

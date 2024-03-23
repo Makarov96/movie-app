@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class KueskieCard extends StatelessWidget {
@@ -31,65 +32,59 @@ class KueskieCard extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: onPressedCard,
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: CachedNetworkImageProvider(
-                  imagePath,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: CachedNetworkImage(
+                  imageUrl: imagePath,
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
               ),
-              borderRadius: BorderRadius.circular(
-                10,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Column(
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 25,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    const Spacer(),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Wrap(
+                        spacing: 10,
+                        runSpacing: 5,
+                        children: [
+                          BadgeIcon(
+                            icon: Icons.group_rounded,
+                            text: popularity.toStringAsFixed(3),
+                          ),
+                          BadgeIcon(
+                            icon: Icons.how_to_vote_outlined,
+                            text: voteCount.toStringAsFixed(3),
+                          ),
+                          BadgeIcon(
+                            icon: Icons.percent_outlined,
+                            text: voteAverage.toStringAsFixed(3),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    )
+                  ],
+                ),
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.4),
-                  blurRadius: 5,
-                  spreadRadius: 3,
-                ),
-              ],
-            ),
-            width: 300,
-            child: Column(
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 25,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                ),
-                const Spacer(),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Wrap(
-                    spacing: 10,
-                    runSpacing: 5,
-                    children: [
-                      BadgeIcon(
-                        icon: Icons.group_rounded,
-                        text: popularity.toStringAsFixed(3),
-                      ),
-                      BadgeIcon(
-                        icon: Icons.how_to_vote_outlined,
-                        text: voteCount.toStringAsFixed(3),
-                      ),
-                      BadgeIcon(
-                        icon: Icons.percent_outlined,
-                        text: voteAverage.toStringAsFixed(3),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                )
-              ],
-            ),
+            ],
           ),
         ),
         Align(

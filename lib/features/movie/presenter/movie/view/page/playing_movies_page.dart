@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kueski_challenge/core/router/routes.dart';
+import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/bloc/playing_movies_bloc.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
@@ -37,7 +38,7 @@ class _PlayingMoviesPageState extends ConsumerState<PlayingMoviesPage> {
               onFavoritePressed: () async {},
               onPressedCard: () =>
                   context.pushNamed(Routes.movieDetails().path, extra: movie),
-              imagePath: movie.backdropPath,
+              imagePath: movie.fullbdPath,
               title: movie.title,
               popularity: movie.popularity,
               voteCount: movie.voteCount,
