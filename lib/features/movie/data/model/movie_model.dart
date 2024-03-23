@@ -19,7 +19,6 @@ class MovieModel extends MovieEntity {
     required super.voteCount,
   });
 
-  @override
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 

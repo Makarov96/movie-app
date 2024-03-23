@@ -36,8 +36,8 @@ class _PlayingMoviesPageState extends ConsumerState<PlayingMoviesPage> {
           itemBuilder: (context, currentInde, movie) {
             return KueskieCard(
               onFavoritePressed: () async {},
-              onPressedCard: () =>
-                  context.pushNamed(Routes.movieDetails().path, extra: movie),
+              onPressedCard: () => context
+                  .pushNamed(const Routes.movieDetails().path, extra: movie),
               imagePath: movie.fullbdPath,
               title: movie.title,
               popularity: movie.popularity,

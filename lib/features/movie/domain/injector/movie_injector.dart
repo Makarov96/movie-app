@@ -8,7 +8,7 @@ import 'package:kueski_challenge/features/movie/presenter/movie/bloc/playing_mov
 import 'package:kueski_challenge/features/movie/presenter/movie/bloc/switch_animation_grid.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
-final class MovieInjector {
+extension MovieInjector on Never {
   static final movieRepository = Provider<MovieRepository>(
     (ref) => MovieApi(
       http: ref.read(Providers.httpProvider),
