@@ -1,7 +1,8 @@
 name: KUESKI_APP_CHALLENGE
 on:
-  push:
-    branches: [fix/artifact-path]
+  pull_request:
+    branches: [main]
+    types: [closed]
 
 jobs:
   apk_and_ipa_artifacs:
