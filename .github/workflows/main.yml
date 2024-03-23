@@ -14,7 +14,7 @@ jobs:
         with:
           distribution: "zulu"
           java-version: "11"
-      - name: Install the Apple certificate and provisioning profile
+      - name: APPLE CERTIFICATE AND PROFILES
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
@@ -62,3 +62,5 @@ jobs:
       # -------------- RELEASE INIT-----------------------
       - name: GENERATE APK
         run: flutter build apk --flavor production --target lib/main_production.dart --dart-define-from-file=env/dev.json
+      - name: GENERATE APK
+        run: flutter build ipa --export-options-plist=ios/Runner/ExportOptions.plist --flavor development --target lib/main_production.dart --dart-define-from-file=env/dev.json
