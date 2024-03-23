@@ -17,10 +17,6 @@ class MockApiRespotory extends Mock implements MovieRepository {
       ) as Future<HttpResult<MovieResultEntity>>);
 }
 
-class Listener<T> extends Mock {
-  void call(T? previous, T next);
-}
-
 void main() {
   const expectedPage = 1;
   final expectedData = {'results': []};

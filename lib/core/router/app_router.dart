@@ -6,7 +6,7 @@ import 'package:mobile_dependencies/mobile_dependencies.dart';
 final routerProvider = Provider<GoRouter>(
   (ref) {
     return GoRouter(
-      initialLocation: Routes.home().path,
+      initialLocation: const Routes.home().path,
       routes: AppRouter.routes,
     );
   },
@@ -17,13 +17,13 @@ final class AppRouter {
 
   static List<GoRoute> get routes => [
         GoRoute(
-          path: Routes.movie().path,
-          name: Routes.movie().name,
+          path: const Routes.movie().path,
+          name: const Routes.movie().name,
           builder: MovieHome.builder,
           routes: [
             GoRoute(
-              path: Routes.movieDetails().path,
-              name: Routes.movieDetails().name,
+              path: const Routes.movieDetails().path,
+              name: const Routes.movieDetails().name,
               builder: MovieDetailView.builder,
             ),
           ],

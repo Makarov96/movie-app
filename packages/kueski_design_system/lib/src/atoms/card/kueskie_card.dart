@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class KueskieCard extends StatelessWidget {

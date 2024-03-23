@@ -17,12 +17,15 @@ dependencies:
     path: packages/mobile_dependencies
 
 
-dev_dependencies:
 
+dev_dependencies:
+  integration_test:
+    sdk: flutter
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.3
   flutter_lints: ^3.0.0
+
 
 
 
