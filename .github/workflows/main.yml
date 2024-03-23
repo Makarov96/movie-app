@@ -3,7 +3,7 @@ on:
   push:
     branches: [feature/github-action]
 jobs:
-  generate_ipa:
+  apk_and_ipa_artifacs:
     runs-on: macos-latest
     steps:
       # -------------- INIT CONFIG -------------------
@@ -30,4 +30,5 @@ jobs:
         run: flutter analyze
       # -------------- ANALYZE OPTIONS END----------------
       # -------------- RELEASE INIT-----------------------
-      - run: flutter build apk --flavor production --target lib/main_production.dart --dart-define-from-file=env/dev.json
+      - name: GENERATE APK
+        run: flutter build apk --release --target lib/main_production.dart --dart-define-from-file=env/dev.json
