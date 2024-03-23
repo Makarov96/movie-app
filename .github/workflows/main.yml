@@ -1,0 +1,33 @@
+name: KUESKI_APP_CHALLENGE
+on:
+  push:
+    branches: [feature/github-action]
+jobs:
+  generate_ipa:
+    runs-on: macos-latest
+    steps:
+      # -------------- INIT CONFIG -------------------
+      - name: COPY .
+        uses: actions/checkout@v4
+      - name: JAVA 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+          java-version: "11"
+      - name: INSTALL FLUTTER
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: CREATE ENV
+        run: mkdir env
+      - name: CREATE JSON
+        run: echo '{"MOVIE_API_KEY_READ_ACCESS":"${{secrets.MOVIE_API_KEY_READ_ACCESS}}","BASE_URL":"${{secrets.BASE_URL}}"}' > env/dev.json
+      # -------------- INIT CONFIG END -------------------
+      # -------------- ANALYZE OPTIONS--------------------
+      - name: RUN FLUTTER TEST
+        run: flutter test
+      - name: RUN FLUTTER ANALYZE
+        run: flutter analyze
+      # -------------- ANALYZE OPTIONS END----------------
+      # -------------- RELEASE INIT-----------------------
+      - run: flutter build apk --flavor production --target lib/main_production.dart --dart-define-from-file=env/dev.json
