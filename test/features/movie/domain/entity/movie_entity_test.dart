@@ -90,4 +90,26 @@ void main() {
       when(() => mockMovieEntity.voteCount).thenReturn(1000);
     },
   );
+
+  group('AddExtract extension tests', () {
+    test('fullPosterPath constructs the correct URL', () {
+      final mockMovie = MockMovieEntity();
+      when(() => mockMovie.posterPath).thenReturn('posterPathValue');
+
+      const expectedPosterPath =
+          'http://image.tmdb.org/t/p/w500/posterPathValue';
+      expect(mockMovie.fullPath, expectedPosterPath);
+      verify(() => mockMovie.posterPath);
+    });
+
+    test('fullBackDropPath constructs the correct URL', () {
+      final mockMovie = MockMovieEntity();
+      when(() => mockMovie.backdropPath).thenReturn('backdropPathValue');
+
+      const expectedBackdropPath =
+          'http://image.tmdb.org/t/p/w500/backdropPathValue';
+      expect(mockMovie.fullbdPath, expectedBackdropPath);
+      verify(() => mockMovie.backdropPath);
+    });
+  });
 }

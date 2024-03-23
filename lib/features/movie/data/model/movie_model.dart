@@ -44,18 +44,14 @@ class MovieModel extends MovieEntity {
   factory MovieModel.fromMap(Map<String, dynamic> map) {
     return MovieModel(
       adult: map['adult'] ?? false,
-      backdropPath: map['backdrop_path'] == null
-          ? MovieStrings.alternativeImage
-          : 'http://image.tmdb.org/t/p/w500/${map['backdrop_path']}',
+      backdropPath: map['backdrop_path'] ?? MovieStrings.alternativeImage,
       genreIds: List<int>.from(map['genre_ids']),
       id: map['id']?.toInt() ?? 0,
       originalLanguage: map['original_language'] ?? '',
       originalTitle: map['original_title'] ?? '',
       overview: map['overview'] ?? '',
       popularity: map['popularity']?.toDouble() ?? 0.0,
-      posterPath: map['poster_path'] == null
-          ? MovieStrings.alternativeImage
-          : 'http://image.tmdb.org/t/p/w500/${map['poster_path']}',
+      posterPath: map['poster_path'] ?? MovieStrings.alternativeImage,
       releaseDate: DateTime.parse(map['release_date']),
       title: map['title'] ?? '',
       video: map['video'] ?? false,
