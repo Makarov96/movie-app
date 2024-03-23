@@ -7,7 +7,7 @@
 	<key>destination</key>
 	<string>export</string>
 	<key>method</key>
-	<string>debugging</string>
+	<string>development</string>
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.stevencol.kueski-challenge.dev</key>
