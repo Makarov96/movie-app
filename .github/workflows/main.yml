@@ -1,0 +1,78 @@
+name: KUESKI_APP_CHALLENGE
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+jobs:
+  apk_and_ipa_artifacs:
+    runs-on: macos-latest
+    steps:
+      # -------------- INIT CONFIG -------------------
+      - name: COPY .
+        uses: actions/checkout@v4
+      - name: JAVA 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+          java-version: "11"
+      - name: APPLE CERTIFICATE AND PROFILES
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
+
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          # apply provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+
+      - name: INSTALL FLUTTER
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: CREATE ENV
+        run: mkdir env
+      - name: CREATE JSON
+        run: echo '{"MOVIE_API_KEY_READ_ACCESS":"${{secrets.MOVIE_API_KEY_READ_ACCESS}}","BASE_URL":"${{secrets.BASE_URL}}"}' > env/dev.json
+      # -------------- INIT CONFIG END -------------------
+      # -------------- ANALYZE OPTIONS--------------------
+      - name: RUN FLUTTER TEST
+        run: flutter test
+      - name: RUN FLUTTER ANALYZE
+        run: flutter analyze
+      # -------------- ANALYZE OPTIONS END----------------
+      # -------------- RELEASE INIT-----------------------
+      - name: GENERATE IPA
+        run: flutter build ipa --export-options-plist=ios/Runner/ExportOptions.plist --flavor development --target lib/main_production.dart --dart-define-from-file=env/dev.json
+      - name: GENERATE APK
+        run: flutter build apk --flavor production --target lib/main_production.dart --dart-define-from-file=env/dev.json
+
+      # -------------- RELEASE INIT END--------------------
+      # -------------- GET ARTIFACT------------------------
+      - name: UPLOAD ARTIFACT
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipa_and_apk_artifact
+          path: |
+            build/app/outputs/flutter-apk/app-production-release.apk
+            build/ios/ipa/[DEV] Kueski Challenge.ipa
