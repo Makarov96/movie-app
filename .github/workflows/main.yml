@@ -1,8 +1,7 @@
 name: KUESKI_APP_CHALLENGE
 on:
-  pull_request:
-    branches: [main]
-    types: [closed]
+  push:
+    branches: [fix/artifact-path]
 
 jobs:
   apk_and_ipa_artifacs:
@@ -75,4 +74,4 @@ jobs:
           name: ipa_and_apk_artifact
           path: |
             build/app/outputs/flutter-apk/app-production-release.apk
-            build/ios/ipa/[DEV] Kueski Challenge.ipa
+            build/ios/ipa
