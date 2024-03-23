@@ -31,4 +31,4 @@ jobs:
       # -------------- ANALYZE OPTIONS END----------------
       # -------------- RELEASE INIT-----------------------
       - name: GENERATE APK
-        run: flutter build apk --release --target lib/main_production.dart --dart-define-from-file=env/dev.json
+        run: flutter build apk --flavor production --target lib/main_production.dart --dart-define-from-file=env/dev.json
