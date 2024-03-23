@@ -1,7 +1,9 @@
 name: KUESKI_APP_CHALLENGE
 on:
-  push:
-    branches: [feature/github-action]
+  pull_request:
+    branches: [main]
+    types: [closed]
+
 jobs:
   apk_and_ipa_artifacs:
     runs-on: macos-latest
