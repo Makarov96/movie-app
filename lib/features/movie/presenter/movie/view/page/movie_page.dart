@@ -14,7 +14,7 @@ class MoviesPage extends ConsumerStatefulWidget {
 }
 
 class _MoviesPageState extends ConsumerState<MoviesPage> {
-  final ScrollController scrollController = ScrollController();
+  ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
