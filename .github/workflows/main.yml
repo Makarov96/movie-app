@@ -60,10 +60,11 @@ jobs:
         run: flutter analyze
       # -------------- ANALYZE OPTIONS END----------------
       # -------------- RELEASE INIT-----------------------
-      - name: GENERATE APK
-        run: flutter build apk --flavor production --target lib/main_production.dart --dart-define-from-file=env/dev.json
       - name: GENERATE IPA
         run: flutter build ipa --export-options-plist=ios/Runner/ExportOptions.plist --flavor development --target lib/main_production.dart --dart-define-from-file=env/dev.json
+      - name: GENERATE APK
+        run: flutter build apk --flavor production --target lib/main_production.dart --dart-define-from-file=env/dev.json
+
       # -------------- RELEASE INIT END--------------------
       # -------------- GET ARTIFACT------------------------
       - name: UPLOAD ARTIFACT
@@ -72,3 +73,4 @@ jobs:
           name: ipa_and_apk_artifact
           path: |
             build/app/outputs/flutter-apk/app-production-release.apk
+            build/ios/ipa/[DEV] Kueski Challenge.ipa
