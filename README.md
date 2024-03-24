@@ -88,14 +88,15 @@ Alternatively, run `flutter run` and code generation will take place automatical
 ## Artifacts 📦
 
 This project has apk and ipa in the summary of the last github action build, in the following link you can checked:
-[action](https://github.com/Makarov96/kueski-challenge/actions/runs/8404408978)
+[action](https://github.com/Makarov96/kueski-challenge/actions/runs/8405879173)
 
 ### also
 
 You can download this app using Diawi
 
 - IOS 📱: https://i.diawi.com/cgEhbi
-- Android 🤖: https://i.diawi.com/ZtAN1A
+- Android 🤖: https://i.diawi.com/SHibB9
+- How does it work? ⛏️: https://youtu.be/dTDhCVxptLk
 
 [coverage_badge]: coverage_badge.svg
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
