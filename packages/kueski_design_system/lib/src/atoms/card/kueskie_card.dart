@@ -5,7 +5,7 @@ class KueskieCard extends StatelessWidget {
   const KueskieCard({
     super.key,
     this.isFavorite = false,
-    this.onFavoritePressed,
+    this.favorite,
     this.onPressedCard,
     required this.imagePath,
     required this.title,
@@ -15,7 +15,7 @@ class KueskieCard extends StatelessWidget {
     required this.movieId,
   });
 
-  final VoidCallback? onFavoritePressed;
+  final Widget? favorite;
   final VoidCallback? onPressedCard;
   final String imagePath;
   final String title;
@@ -88,21 +88,7 @@ class KueskieCard extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.topRight,
-          child: FloatingActionButton.small(
-            heroTag: Key(movieId),
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            onPressed: onFavoritePressed,
-            backgroundColor: Colors.white.withOpacity(
-              0.4,
-            ),
-            child: Icon(
-              Icons.star,
-              color: isFavorite ? Colors.yellow : Colors.white.withOpacity(0.6),
-            ),
-          ),
+          child: favorite,
         ),
       ],
     );

@@ -17,15 +17,9 @@ class MovieBloc extends StateNotifier<AsyncValue<List<MovieEntity>>> {
     final either = await _movieRepository.getMovies(page: currentPage++);
     if (mounted) {
       either.when(
-        (statusCode, error) {
-          state = AsyncValue.error(
-            error!,
-            StackTrace.current,
-          );
-        },
-        () {
-          state = const AsyncValue.loading();
-        },
+        (statusCode, error) =>
+            state = AsyncValue.error(error!, StackTrace.current),
+        () => state = const AsyncValue.loading(),
         (response) {
           totalPages = response.totalPages;
           items.addAll(response.results);

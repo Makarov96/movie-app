@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kueski_challenge/features/movie/data/model/favorite_movie_model.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_result_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
@@ -40,6 +41,15 @@ class MockMovieRepository extends Mock implements MovieRepository {
   @override
   Future<HttpResult<MovieResultEntity>> playingMovies({int page = 1}) async =>
       HttpResult<MovieResultEntity>.ok(_mockMovieResult, 200);
+
+  @override
+  Future<HttpResult<MovieResultEntity>> getFavoritesMovies(
+          {int page = 1}) async =>
+      HttpResult<MovieResultEntity>.ok(_mockMovieResult, 200);
+  @override
+  Future<HttpResult<bool>> addFavoriteMovie(
+          {required FavoriteMovieModel movie}) async =>
+      HttpResult<bool>.ok(true, 200);
 }
 
 class WidgetUnderTest {

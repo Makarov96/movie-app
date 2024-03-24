@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:kueski_challenge/features/movie/_module/strings/movie_strings.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class MovieEntity extends Equatable {
@@ -52,6 +55,36 @@ class MovieEntity extends Equatable {
 }
 
 extension AddExtract on MovieEntity {
-  String get fullPath => 'http://image.tmdb.org/t/p/w500/$posterPath';
-  String get fullbdPath => 'http://image.tmdb.org/t/p/w500/$backdropPath';
+  String get fullPath => '${MovieStrings.recoveryImagePath}$posterPath';
+  String get fullbdPath => '${MovieStrings.recoveryImagePath}$backdropPath';
+}
+
+extension ConverToJson on MovieEntity {
+  String get toStringMovie {
+    final result = <String, dynamic>{};
+
+    result.addAll({'adult': adult});
+    result.addAll({'backdrop_path': backdropPath});
+    result.addAll({'genre_ids': genreIds});
+    result.addAll({'id': id});
+    result.addAll({'original_language': originalLanguage});
+    result.addAll({'original_title': originalTitle});
+    result.addAll({'overview': overview});
+    result.addAll({'popularity': popularity});
+    result.addAll({'poster_path': posterPath});
+    result.addAll({'release_date': releaseDate.toString()});
+    result.addAll({'title': title});
+    result.addAll({'video': video});
+    result.addAll({'vote_average': voteAverage});
+    result.addAll({'vote_count': voteCount});
+
+    return jsonEncode(result);
+  }
+}
+
+extension Exist on List<MovieEntity> {
+  bool existMovie({required int movieId}) {
+    final map = asMap();
+    return map.values.any((checker) => checker.id == movieId);
+  }
 }
