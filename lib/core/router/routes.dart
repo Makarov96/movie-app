@@ -4,15 +4,15 @@ class Routes {
     required this.path,
   });
 
-  Routes.home()
+  const Routes.home()
       : name = 'home',
         path = '/';
 
-  Routes.movie()
+  const Routes.movie()
       : name = 'movie',
         path = '/';
 
-  Routes.movieDetails()
+  const Routes.movieDetails()
       : name = 'movie-details',
         path = 'movie-details';
   final String name;

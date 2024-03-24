@@ -1,2 +1,2 @@
-export 'text/text.dart';
+export '../atoms/text/text.dart';
 export 'draggable/draggable.dart';

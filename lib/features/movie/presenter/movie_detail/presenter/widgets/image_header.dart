@@ -18,8 +18,7 @@ class ImageHader extends StatelessWidget {
           height: sizeOf.height * 0.5,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: CachedNetworkImageProvider(
-                  'http://image.tmdb.org/t/p/w900/${movie.backdropPath}'),
+              image: CachedNetworkImageProvider(movie.fullbdPath),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
                 Colors.black.withOpacity(0.3),
