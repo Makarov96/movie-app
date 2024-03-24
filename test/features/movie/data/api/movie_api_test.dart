@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kueski_challenge/core/injector/environment.dart';
 import 'package:kueski_challenge/features/movie/_module/strings/movie_strings.dart';
 
 import 'package:kueski_challenge/features/movie/data/api/movie_api.dart';
@@ -27,7 +28,8 @@ void main() {
               parser: (statusCode, value) => MovieResultModel.fromJson(value),
             )).thenAnswer((_) => Future.value(expectedResult));
 
-        final movieApi = MovieApi(http: ApiMockInit.mockHttp);
+        final movieApi =
+            MovieApi(http: ApiMockInit.mockHttp, env: Environment.dev);
 
         // Act
         final result = await movieApi.getMovies(page: expectedPage);
@@ -54,7 +56,8 @@ void main() {
               parser: (statusCode, value) => MovieResultModel.fromJson(value),
             )).thenThrow(expectedError);
 
-        final movieApi = MovieApi(http: ApiMockInit.mockHttp);
+        final movieApi =
+            MovieApi(http: ApiMockInit.mockHttp, env: Environment.dev);
 
         // Act
         try {
@@ -90,7 +93,8 @@ void main() {
               parser: (statusCode, value) => MovieResultModel.fromJson(value),
             )).thenAnswer((_) => Future.value(expectedResult));
 
-        final movieApi = MovieApi(http: ApiMockInit.mockHttp);
+        final movieApi =
+            MovieApi(http: ApiMockInit.mockHttp, env: Environment.dev);
 
         // Act
         final result = await movieApi.playingMovies(page: expectedPage);
@@ -117,7 +121,8 @@ void main() {
               parser: (statusCode, value) => MovieResultModel.fromJson(value),
             )).thenThrow(expectedError);
 
-        final movieApi = MovieApi(http: ApiMockInit.mockHttp);
+        final movieApi =
+            MovieApi(http: ApiMockInit.mockHttp, env: Environment.dev);
 
         // Act
         try {

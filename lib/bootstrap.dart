@@ -16,6 +16,7 @@ Future<void> bootstrap(Environment environment) async {
 
       LocaleSettings.useDeviceLocale();
       GoRouter.optionURLReflectsImperativeAPIs = true;
+
       final app = ProviderScope(
         overrides: overrides(environment),
         child: TranslationProvider(child: const App()),
