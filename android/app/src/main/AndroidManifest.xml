@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.verygoodcore.kueski_challenge">
+    package="com.stevencol.kueski_challenge">
    <application
         android:label="${appName}"
         android:name="${applicationName}"
