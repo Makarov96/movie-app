@@ -65,7 +65,7 @@ jobs:
       - name: GENERATE IPA
         run: flutter build ipa --export-options-plist=ios/Runner/ExportOptions.plist --flavor development --target lib/main_production.dart --dart-define-from-file=env/dev.json
       - name: GENERATE APK
-        run: flutter build apk --flavor production --target lib/main_production.dart --dart-define-from-file=env/dev.json
+        run: flutter build apk --flavor development --target lib/main_production.dart --dart-define-from-file=env/dev.json
 
       # -------------- RELEASE INIT END--------------------
       # -------------- GET ARTIFACT------------------------
