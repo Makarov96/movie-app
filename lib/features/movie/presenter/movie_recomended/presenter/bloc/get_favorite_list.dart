@@ -31,9 +31,9 @@ class GetFavoriteList extends ChangeNotifier {
         totalPages = response.totalPages;
 
         items.addAll(response.results);
-
-        cpMovies = items.map((e) => e.id).toList();
-        status = (status: Status.success, movies: items.toSet().toList());
+        var copy = items.toSet().toList();
+        cpMovies = copy.map((e) => e.id).toList();
+        status = (status: Status.success, movies: copy);
       },
     );
 

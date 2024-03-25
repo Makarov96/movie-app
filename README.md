@@ -97,8 +97,8 @@ This project has apk and ipa in the summary of the last github action build, in 
 
 You can download this app using Diawi
 
-- IOS 📱: https://i.diawi.com/v9Fc9N
-- Android 🤖: https://i.diawi.com/7SQdD2
+- IOS 📱: https://i.diawi.com/TTc4CF
+- Android 🤖: https://i.diawi.com/TnzBzY
 - How does it work? ⛏️: https://youtu.be/o1slaQuDMSI
 
 [coverage_badge]: coverage_badge.svg
@@ -109,11 +109,11 @@ You can download this app using Diawi
 
 - Q: How long did you spend on this?
 
-  A: 4 days
+  A: 5 days
 
 - Q: Did you complete your implementation?
 
-  A: No really, I wasn't be able to complete the design system, I would have liked to develope a responsive design and integrate a local data base for add on it my favorite movie.
+  A: No really, I wasn't be able to complete the design system, I would have liked to develope a responsive design and integrate a local data base for add on it my favorite movie, and I'd like to implemented testing on micro-packages.
 
 - Q: What would you have added if you had more time?
 
