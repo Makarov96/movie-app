@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kueski_challenge/core/router/router.dart';
+import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
+import 'package:kueski_challenge/features/movie/presenter/component/favorite/listener/status_listener.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/view/page/movie_page.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/view/page/playing_movies_page.dart';
 import 'package:kueski_challenge/i18n/translations.g.dart';
@@ -29,16 +32,37 @@ class MovieHome extends StatelessWidget {
           ),
         ),
         body: const MovieLayoutHome(),
+        drawer: KueskiDrawer(
+          title: context.texts.home.title,
+          listTiles: [
+            ListTile(
+              title: Text(context.texts.home.favorites),
+              leading: const Icon(Icons.favorite),
+              onTap: () {
+                context.pushNamed(const Routes.movieRecommended().name,
+                    extra: false);
+                Navigator.of(context).pop();
+              },
+            ),
+            // Add more menu items here
+          ],
+        ),
       ),
     );
   }
 }
 
-class MovieLayoutHome extends StatelessWidget {
+class MovieLayoutHome extends ConsumerWidget {
   const MovieLayoutHome({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(
+      MovieInjector.addFavoriteMovie,
+      (previous, current) {
+        StatusListener.showSnackBar(previous, current, context);
+      },
+    );
     return const TabBarView(
       children: [
         MoviesPage(),
