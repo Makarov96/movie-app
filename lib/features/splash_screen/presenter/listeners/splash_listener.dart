@@ -11,7 +11,7 @@ extension SplashListener on Never {
       return;
     }
 
-    if (current.items.isNotEmpty) {
+    if (current.value.isNotEmpty) {
       context.pushReplacementNamed(
         const Routes.movieRecommended().name,
         extra: true,

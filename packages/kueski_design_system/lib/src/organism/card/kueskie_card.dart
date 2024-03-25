@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class KueskieCard extends StatelessWidget {
-  const KueskieCard({
-    super.key,
-    this.isFavorite = false,
-    this.favorite,
-    this.onPressedCard,
-    required this.imagePath,
-    required this.title,
-    required this.popularity,
-    required this.voteCount,
-    required this.voteAverage,
-    required this.movieId,
-  });
+  const KueskieCard(
+      {super.key,
+      this.favorite,
+      this.onPressedCard,
+      required this.imagePath,
+      required this.title,
+      required this.popularity,
+      required this.voteCount,
+      required this.voteAverage,
+      required this.movieId,
+      required this.isStretch});
 
   final Widget? favorite;
   final VoidCallback? onPressedCard;
@@ -22,7 +21,8 @@ class KueskieCard extends StatelessWidget {
   final double popularity;
   final int voteCount;
   final double voteAverage;
-  final bool isFavorite;
+  final bool isStretch;
+
   final String movieId;
   @override
   Widget build(BuildContext context) {
@@ -87,8 +87,13 @@ class KueskieCard extends StatelessWidget {
           ),
         ),
         Align(
-          alignment: Alignment.topRight,
-          child: favorite,
+          alignment: isStretch ? Alignment.topRight : Alignment.bottomCenter,
+          child: isStretch
+              ? favorite
+              : Padding(
+                  padding: const EdgeInsets.only(bottom: 100),
+                  child: favorite,
+                ),
         ),
       ],
     );

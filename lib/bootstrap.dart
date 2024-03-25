@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:kueski_challenge/app/view/app.dart';
 import 'package:kueski_challenge/core/injector/environment.dart';
 import 'package:kueski_challenge/core/injector/overrides.dart';
-import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
+import 'package:kueski_challenge/features/splash_screen/domain/injector/splash_injector.dart';
 import 'package:kueski_challenge/i18n/translations.g.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
@@ -20,9 +20,7 @@ Future<void> bootstrap(Environment environment) async {
       GoRouter.optionURLReflectsImperativeAPIs = true;
       final container =
           ProviderContainer(overrides: overrides(environment, prefs));
-      container
-          .read(MovieInjector.getFavoriteMovies)
-          .getList(isListener: false);
+      container.read(SplashInjector.checker);
       final app = UncontrolledProviderScope(
         container: container,
         child: TranslationProvider(child: const App()),

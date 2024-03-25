@@ -38,8 +38,10 @@ class _MoviesPageState extends ConsumerState<MoviesPage> {
           gridToggle: () => switcher.toggle(),
           itemBuilder: (context, currentIndex, movie) {
             return KueskieCard(
+              isStretch: switcher.switchToGrid,
               key: Moviekeys.kueskiCard,
               favorite: FavoriteButton(
+                isStretch: switcher.switchToGrid,
                 movieEntity: movie,
               ),
               onPressedCard: () => context

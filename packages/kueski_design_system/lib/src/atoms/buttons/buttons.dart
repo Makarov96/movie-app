@@ -1,1 +1,1 @@
-export 'kueski_favorite_button.dart';
+export 'kueski_button.dart';

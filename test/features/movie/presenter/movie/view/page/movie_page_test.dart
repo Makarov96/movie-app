@@ -13,6 +13,7 @@ import '../../../../../../common/helper/widget_under.dart';
 class MockBuildContext extends Mock implements BuildContext {}
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   late MoviesPage moviesPage;
 
   setUp(
@@ -29,7 +30,9 @@ void main() {
         'should be return a custom grid layout',
         (tester) async {
           await tester.pumpWidget(
-            WidgetUnderTest.appTest(moviesPage),
+            WidgetUnderTest.appTest(
+              moviesPage,
+            ),
           );
 
           await tester.pump();
@@ -37,7 +40,6 @@ void main() {
           final itemCount =
               tester.widgetList<KueskieCard>(find.byType(KueskieCard)).length;
 
-          await tester.tap(find.byIcon(Icons.star).first);
           await tester.tap(find.byType(GestureDetector).first);
           await tester.tap(find.byType(GestureDetector).last);
           expect(itemCount, mockData.length);
@@ -85,6 +87,7 @@ void main() {
         'should be return a custom KueskiCard',
         (tester) async {
           final kueskiCard = KueskieCard(
+            isStretch: false,
             key: Moviekeys.kueskiCard,
             imagePath: '',
             title: 'hello world',

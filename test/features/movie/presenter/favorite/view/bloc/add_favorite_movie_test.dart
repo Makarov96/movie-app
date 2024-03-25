@@ -84,11 +84,11 @@ void main() {
       when(() => mockMovieRepository.getFavoritesMovies(page: expectedPage))
           .thenAnswer((_) => Future.value(expectedFailureGetFM));
 
-      final bloc = container.read(MovieInjector.getFavoriteMovies);
+      final bloc = container.read(MovieInjector.getFavoriteMovies.notifier);
 
-      await bloc.getList(isListener: false);
-      bloc.status = (movies: [], status: Status.error);
-      expect(bloc.status.status, Status.error);
+      await bloc.getList();
+
+      expect(bloc.movies, []);
     });
   });
 }

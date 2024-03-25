@@ -37,8 +37,10 @@ class _PlayingMoviesPageState extends ConsumerState<PlayingMoviesPage> {
           gridToggle: () => switcher.togglePM(),
           itemBuilder: (context, currentInde, movie) {
             return KueskieCard(
+              isStretch: switcher.switchToGridPM,
               favorite: FavoriteButton(
                 movieEntity: movie,
+                isStretch: switcher.switchToGridPM,
               ),
               onPressedCard: () => context
                   .pushNamed(const Routes.movieDetails().path, extra: movie),

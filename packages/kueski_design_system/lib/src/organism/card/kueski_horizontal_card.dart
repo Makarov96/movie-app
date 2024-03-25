@@ -26,10 +26,12 @@ class KueskiHorizontalCard extends StatelessWidget {
   const KueskiHorizontalCard({
     super.key,
     required this.model,
+    required this.favorite,
     this.onTap,
   });
   final CardModel model;
   final VoidCallback? onTap;
+  final Widget favorite;
   @override
   Widget build(BuildContext context) {
     var sizeof = MediaQuery.sizeOf(context);
@@ -38,7 +40,7 @@ class KueskiHorizontalCard extends StatelessWidget {
       child: Card(
         color: Colors.white,
         child: SizedBox(
-          height: sizeof.height * 0.2,
+          height: sizeof.height * 0.22,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
             child: Row(
@@ -74,6 +76,7 @@ class KueskiHorizontalCard extends StatelessWidget {
                         text: model.title3,
                         value: model.subTitle3,
                       ),
+                      favorite,
                     ],
                   ),
                 )

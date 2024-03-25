@@ -1,52 +1,48 @@
-import 'package:flutter/material.dart';
-
-import 'package:kueski_challenge/core/utils/status.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/repository/movie_repository.dart';
+import 'package:mobile_dependencies/mobile_dependencies.dart';
 
-class GetFavoriteList extends ChangeNotifier {
+class GetFavoriteList extends StateNotifier<AsyncValue<List<MovieEntity>>> {
   final MovieRepository _movieRepository;
 
   GetFavoriteList({
     required MovieRepository movieRepository,
-  }) : _movieRepository = movieRepository;
+  })  : _movieRepository = movieRepository,
+        super(const AsyncValue<List<MovieEntity>>.loading()) {
+    getList();
+  }
 
   static int currentPage = 1;
   static int totalPages = 0;
-  List<MovieEntity> items = [];
-  List<int> cpMovies = [];
-  ({Status status, List<MovieEntity> movies}) status =
-      (status: Status.init, movies: <MovieEntity>[]);
+  List<MovieEntity> movies = [];
 
-  Future<void> getList({required bool isListener}) async {
-    status = (status: Status.init, movies: <MovieEntity>[]);
+  Future<void> getList({bool refresh = false}) async {
     final either = await _movieRepository.getFavoritesMovies(
-        page: isListener ? currentPage += 1 : currentPage);
+        page: refresh ? 1 : currentPage++);
 
     either.when(
       (statusCode, error) =>
-          status = (status: Status.error, movies: <MovieEntity>[]),
-      () => status = status = (status: Status.loading, movies: <MovieEntity>[]),
+          state = AsyncValue.error(error ?? Exception(), StackTrace.current),
+      () => state = const AsyncValue.loading(),
       (response) {
         totalPages = response.totalPages;
 
-        items.addAll(response.results);
-        var copy = items.toSet().toList();
-        cpMovies = copy.map((e) => e.id).toList();
-        status = (status: Status.success, movies: copy);
+        movies.addAll(response.results);
+        state = AsyncValue.data(movies.toSet().toList());
       },
     );
-
-    notifyListeners();
   }
 
-  void addNewFavoriteMovie(MovieEntity movie) {
-    if (cpMovies.existMovie(movieId: movie.id)) {
-      cpMovies = cpMovies..remove(movie.id);
-    } else {
-      cpMovies.add(movie.id);
-    }
+  void removeElementAt({required MovieEntity movie}) {
+    state.value?.remove(movie);
+    var removeList = [...state.value ?? []];
+    state = AsyncValue.data([...removeList]);
+  }
 
-    notifyListeners();
+  @override
+  void dispose() {
+    currentPage = 1;
+    totalPages = 0;
+    super.dispose();
   }
 }

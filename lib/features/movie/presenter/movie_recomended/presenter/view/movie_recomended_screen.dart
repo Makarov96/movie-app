@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kueski_challenge/features/movie/presenter/movie_recomended/presenter/widget/movie_list.dart';
+import 'package:kueski_challenge/features/movie/presenter/movie_recomended/presenter/widget/movie_list_view.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie_recomended/presenter/widget/warning_banner.dart';
 import 'package:kueski_challenge/i18n/translations.g.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';

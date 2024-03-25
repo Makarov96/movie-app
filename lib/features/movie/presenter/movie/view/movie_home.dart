@@ -40,9 +40,9 @@ class MovieHome extends StatelessWidget {
                 title: Text(context.texts.home.favorites),
                 leading: const Icon(Icons.favorite),
                 onTap: () async {
-                  ref
-                      .read(MovieInjector.getFavoriteMovies)
-                      .getList(isListener: false);
+                  ref.read(MovieInjector.getFavoriteMovies.notifier).getList(
+                        refresh: true,
+                      );
                   Navigator.of(context).pop();
                   await context.pushNamed(const Routes.movieRecommended().name,
                       extra: false);
