@@ -3,8 +3,8 @@ import 'package:kueski_challenge/core/router/routes.dart';
 
 void main() {
   test('Routes.home creates Route with correct name and path', () {
-    const route = Routes.home();
-    expect(route.name, 'home');
+    const route = Routes.splash();
+    expect(route.name, 'splash-screen');
     expect(route.path, '/');
   });
 

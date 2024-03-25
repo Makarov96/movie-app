@@ -8,31 +8,28 @@ class GetFavoriteList extends ChangeNotifier {
 
   GetFavoriteList({
     required MovieRepository movieRepository,
-  }) : _movieRepository = movieRepository {
-    getList();
-  }
+  }) : _movieRepository = movieRepository;
 
   static int currentPage = 1;
   static int totalPages = 0;
   List<MovieEntity> items = [];
-  Status status = Status.init;
+  ({Status status, List<MovieEntity> movies}) status =
+      (status: Status.init, movies: <MovieEntity>[]);
 
-  void getList() async {
-    status = Status.init;
+  Future<void> getList() async {
+    status = (status: Status.init, movies: <MovieEntity>[]);
     final either = await _movieRepository.getFavoritesMovies();
 
     either.when(
-      (statusCode, error) => status = Status.error,
-      () => status = Status.loading,
+      (statusCode, error) =>
+          status = (status: Status.error, movies: <MovieEntity>[]),
+      () => status = status = (status: Status.loading, movies: <MovieEntity>[]),
       (response) {
         totalPages = response.totalPages;
         items = response.results;
-
-        status = Status.success;
+        status = (status: Status.success, movies: items);
       },
     );
-
-    print(items.length);
 
     notifyListeners();
   }

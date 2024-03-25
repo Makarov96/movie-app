@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 22 (11 per locale)
+/// Strings: 32 (16 per locale)
 ///
-/// Built on 2024-03-24 at 13:36 UTC
+/// Built on 2024-03-25 at 00:22 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -173,8 +173,23 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final Translations _root = this; // ignore: unused_field
 
 	// Translations
+	late final _TranslationsRecommendedEn recommended = _TranslationsRecommendedEn._(_root);
 	late final _TranslationsDetailsEn details = _TranslationsDetailsEn._(_root);
 	late final _TranslationsHomeEn home = _TranslationsHomeEn._(_root);
+}
+
+// Path: recommended
+class _TranslationsRecommendedEn {
+	_TranslationsRecommendedEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => TranslationOverrides.string(_root.$meta, 'recommended.title', {}) ?? 'Continue viewing';
+	String get errorMessage => TranslationOverrides.string(_root.$meta, 'recommended.errorMessage', {}) ?? 'Something went wrong, you could try to close and open the app again.';
+	String get keepWatching => TranslationOverrides.string(_root.$meta, 'recommended.keepWatching', {}) ?? 'No more';
+	String get goToHome => TranslationOverrides.string(_root.$meta, 'recommended.goToHome', {}) ?? 'Yes and go to home';
+	String get warningTitle => TranslationOverrides.string(_root.$meta, 'recommended.warningTitle', {}) ?? 'Do you want to see this screen again?';
 }
 
 // Path: details
@@ -230,8 +245,23 @@ class _TranslationsEs implements Translations {
 	@override late final _TranslationsEs _root = this; // ignore: unused_field
 
 	// Translations
+	@override late final _TranslationsRecommendedEs recommended = _TranslationsRecommendedEs._(_root);
 	@override late final _TranslationsDetailsEs details = _TranslationsDetailsEs._(_root);
 	@override late final _TranslationsHomeEs home = _TranslationsHomeEs._(_root);
+}
+
+// Path: recommended
+class _TranslationsRecommendedEs implements _TranslationsRecommendedEn {
+	_TranslationsRecommendedEs._(this._root);
+
+	@override final _TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => TranslationOverrides.string(_root.$meta, 'recommended.title', {}) ?? 'Continuar viendo';
+	@override String get errorMessage => TranslationOverrides.string(_root.$meta, 'recommended.errorMessage', {}) ?? 'Ha sucedido un error, puedes volver a cargar la aplicacion.';
+	@override String get keepWatching => TranslationOverrides.string(_root.$meta, 'recommended.keepWatching', {}) ?? 'Ya no';
+	@override String get goToHome => TranslationOverrides.string(_root.$meta, 'recommended.goToHome', {}) ?? 'Si, he ir a inicio';
+	@override String get warningTitle => TranslationOverrides.string(_root.$meta, 'recommended.warningTitle', {}) ?? '¿Te gustaria ver de nuevo al iniciar esta pantalla?';
 }
 
 // Path: details
@@ -269,6 +299,11 @@ class _TranslationsHomeEs implements _TranslationsHomeEn {
 extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'recommended.title': return TranslationOverrides.string(_root.$meta, 'recommended.title', {}) ?? 'Continue viewing';
+			case 'recommended.errorMessage': return TranslationOverrides.string(_root.$meta, 'recommended.errorMessage', {}) ?? 'Something went wrong, you could try to close and open the app again.';
+			case 'recommended.keepWatching': return TranslationOverrides.string(_root.$meta, 'recommended.keepWatching', {}) ?? 'No more';
+			case 'recommended.goToHome': return TranslationOverrides.string(_root.$meta, 'recommended.goToHome', {}) ?? 'Yes and go to home';
+			case 'recommended.warningTitle': return TranslationOverrides.string(_root.$meta, 'recommended.warningTitle', {}) ?? 'Do you want to see this screen again?';
 			case 'details.popularity': return TranslationOverrides.string(_root.$meta, 'details.popularity', {}) ?? 'Polularity:';
 			case 'details.votes': return TranslationOverrides.string(_root.$meta, 'details.votes', {}) ?? 'Votes:';
 			case 'details.votesAverage': return TranslationOverrides.string(_root.$meta, 'details.votesAverage', {}) ?? 'Votes Average:';
@@ -288,6 +323,11 @@ extension on Translations {
 extension on _TranslationsEs {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'recommended.title': return TranslationOverrides.string(_root.$meta, 'recommended.title', {}) ?? 'Continuar viendo';
+			case 'recommended.errorMessage': return TranslationOverrides.string(_root.$meta, 'recommended.errorMessage', {}) ?? 'Ha sucedido un error, puedes volver a cargar la aplicacion.';
+			case 'recommended.keepWatching': return TranslationOverrides.string(_root.$meta, 'recommended.keepWatching', {}) ?? 'Ya no';
+			case 'recommended.goToHome': return TranslationOverrides.string(_root.$meta, 'recommended.goToHome', {}) ?? 'Si, he ir a inicio';
+			case 'recommended.warningTitle': return TranslationOverrides.string(_root.$meta, 'recommended.warningTitle', {}) ?? '¿Te gustaria ver de nuevo al iniciar esta pantalla?';
 			case 'details.popularity': return TranslationOverrides.string(_root.$meta, 'details.popularity', {}) ?? 'Popularidad:';
 			case 'details.votes': return TranslationOverrides.string(_root.$meta, 'details.votes', {}) ?? 'Votos:';
 			case 'details.votesAverage': return TranslationOverrides.string(_root.$meta, 'details.votesAverage', {}) ?? 'Media de votos:';
