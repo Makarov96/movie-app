@@ -3,7 +3,9 @@ import 'package:kueski_challenge/core/router/routes.dart';
 import 'package:kueski_challenge/features/movie/_module/keys/movie_keys.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
+import 'package:kueski_challenge/features/movie/presenter/component/favorite/view/favorite_button.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/bloc/movie_bloc.dart';
+import 'package:kueski_challenge/i18n/translations.g.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class MoviesPage extends ConsumerStatefulWidget {
@@ -36,8 +38,12 @@ class _MoviesPageState extends ConsumerState<MoviesPage> {
           gridToggle: () => switcher.toggle(),
           itemBuilder: (context, currentIndex, movie) {
             return KueskieCard(
+              isStretch: switcher.switchToGrid,
               key: Moviekeys.kueskiCard,
-              onFavoritePressed: () {},
+              favorite: FavoriteButton(
+                isStretch: switcher.switchToGrid,
+                movieEntity: movie,
+              ),
               onPressedCard: () => context
                   .pushNamed(const Routes.movieDetails().path, extra: movie),
               imagePath: movie.fullbdPath,
@@ -50,17 +56,10 @@ class _MoviesPageState extends ConsumerState<MoviesPage> {
           },
         );
       },
-      error: (e, s) => const CircularProgressIndicator(),
-      loading: () => const Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 200,
-          ),
-          Text('Error trying call the api'),
-        ],
+      loading: () => const ErrorOrLoadingLayout(),
+      error: (e, s) => ErrorOrLoadingLayout(
+        key: Moviekeys.errorOrLoadingLayout,
+        message: context.texts.home.errorMessage,
       ),
     );
   }

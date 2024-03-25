@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kueski_challenge/core/injector/environment.dart';
 import 'package:kueski_challenge/core/injector/providers.dart';
 import 'package:kueski_challenge/features/movie/data/api/movie_api.dart';
+import 'package:kueski_challenge/features/movie/data/model/favorite_movie_model.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_result_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
@@ -43,6 +45,10 @@ class MockMovieRepository extends Mock implements MovieRepository {
   @override
   Future<HttpResult<MovieResultEntity>> playingMovies({int page = 1}) async =>
       HttpResult<MovieResultEntity>.ok(_mockMovieResult, 200);
+  @override
+  Future<HttpResult<bool>> addFavoriteMovie(
+          {required FavoriteMovieModel movie}) async =>
+      HttpResult<bool>.ok(true, 200);
 }
 
 class MockMovie extends Mock implements MovieApi {
@@ -53,6 +59,11 @@ class MockMovie extends Mock implements MovieApi {
   @override
   Future<HttpResult<MovieResultEntity>> playingMovies({int page = 1}) async =>
       HttpResult<MovieResultEntity>.ok(_mockMovieResult, 200);
+
+  @override
+  Future<HttpResult<bool>> addFavoriteMovie(
+          {required FavoriteMovieModel movie}) async =>
+      HttpResult<bool>.ok(true, 200);
 }
 
 void main() {
@@ -94,6 +105,7 @@ void main() {
             overrides: [
               Providers.httpProvider
                   .overrideWith((ref) => ApiMockInit.mockSuccessHttp),
+              Providers.enviroment.overrideWith((ref) => Environment.dev),
             ],
           );
           final reader = container.read(MovieInjector.movieRepository);
@@ -112,8 +124,8 @@ void main() {
           //arrange
           final container = createContainer(
             overrides: [
-              MovieInjector.movieRepository.overrideWith(
-                  (ref) => MovieApi(http: ApiMockInit.mockSuccessHttp)),
+              MovieInjector.movieRepository.overrideWith((ref) => MovieApi(
+                  http: ApiMockInit.mockSuccessHttp, env: Environment.dev)),
             ],
           );
 

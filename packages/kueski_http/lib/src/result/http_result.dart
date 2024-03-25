@@ -53,6 +53,16 @@ class Ok<R> extends HttpResult<R> {
     loading();
     return r(ok);
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Ok<R> && other.ok == ok && other.statusCode == statusCode;
+  }
+
+  @override
+  int get hashCode => ok.hashCode ^ statusCode.hashCode;
 }
 
 class Err<R> extends HttpResult<R> {
@@ -76,4 +86,16 @@ class Err<R> extends HttpResult<R> {
     loading();
     return l(statusCode, error);
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Err<R> &&
+        other.statusCode == statusCode &&
+        other.error == error;
+  }
+
+  @override
+  int get hashCode => statusCode.hashCode ^ error.hashCode;
 }

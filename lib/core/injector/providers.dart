@@ -11,7 +11,7 @@ extension Providers on Never {
       final enableLogging = env.enableLogging;
       final dio = Dio(BaseOptions(
         baseUrl: env.baseUrl,
-        headers: KueskieHeaders.addEntry({'Authorization': env.apiKey}),
+        headers: KueskieHeaders.addEntry({'Authorization': env.readAccess}),
       ));
       dio.interceptors.addAll([
         RetryInterceptor(dio: dio, enableLogging: enableLogging),

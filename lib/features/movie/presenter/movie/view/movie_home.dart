@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kueski_challenge/core/router/router.dart';
+import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
+import 'package:kueski_challenge/features/movie/presenter/component/favorite/listener/status_listener.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/view/page/movie_page.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/view/page/playing_movies_page.dart';
 import 'package:kueski_challenge/i18n/translations.g.dart';
@@ -29,16 +32,42 @@ class MovieHome extends StatelessWidget {
           ),
         ),
         body: const MovieLayoutHome(),
+        drawer: Consumer(builder: (context, ref, widget) {
+          return KueskiDrawer(
+            title: context.texts.home.title,
+            listTiles: [
+              ListTile(
+                title: Text(context.texts.home.favorites),
+                leading: const Icon(Icons.favorite),
+                onTap: () async {
+                  ref.read(MovieInjector.getFavoriteMovies.notifier).getList(
+                        refresh: true,
+                      );
+                  Navigator.of(context).pop();
+                  await context.pushNamed(const Routes.movieRecommended().name,
+                      extra: false);
+                },
+              ),
+              // Add more menu items here
+            ],
+          );
+        }),
       ),
     );
   }
 }
 
-class MovieLayoutHome extends StatelessWidget {
+class MovieLayoutHome extends ConsumerWidget {
   const MovieLayoutHome({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(
+      MovieInjector.addFavoriteMovie,
+      (previous, current) {
+        StatusListener.showSnackBar(previous, current, context);
+      },
+    );
     return const TabBarView(
       children: [
         MoviesPage(),

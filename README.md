@@ -47,8 +47,11 @@ The above files must be content the following variables and values:
 
 ```json
 {
-  "MOVIE_API_KEY_READ_ACCESS": "YOUR_MOVIE_API_KEY_READ_ACCESS",
-  "BASE_URL": "https://api.themoviedb.org"
+  "MOVIE_API_KEY_READ_ACCESS": "YOUR_API_KEY",
+  "BASE_URL": "https://api.themoviedb.org",
+  "ACCOUNT_ID": 0000000,
+  "SESSION_ID": "YOUR_SESSION_ID",
+  "API_KEY": "YOUR_API_KEY"
 }
 ```
 
@@ -94,9 +97,9 @@ This project has apk and ipa in the summary of the last github action build, in 
 
 You can download this app using Diawi
 
-- IOS 📱: https://i.diawi.com/cgEhbi
-- Android 🤖: https://i.diawi.com/SHibB9
-- How does it work? ⛏️: https://youtu.be/dTDhCVxptLk
+- IOS 📱: https://i.diawi.com/P1rgHQ
+- Android 🤖: https://i.diawi.com/QwK4DP
+- How does it work? ⛏️: https://youtu.be/HCmKJor4o_8
 
 [coverage_badge]: coverage_badge.svg
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
@@ -106,11 +109,11 @@ You can download this app using Diawi
 
 - Q: How long did you spend on this?
 
-  A: 4 days
+  A: 5 days
 
 - Q: Did you complete your implementation?
 
-  A: No really, I wasn't be able to complete the design system, I would have liked to develope a responsive design and integrate a local data base for add on it my favorite movie.
+  A: No really, I wasn't be able to complete the design system, I would have liked to develope a responsive design and integrate a local data base for add on it my favorite movie, and I'd like to implemented testing on micro-packages.
 
 - Q: What would you have added if you had more time?
 

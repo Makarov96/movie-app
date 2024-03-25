@@ -8,4 +8,19 @@ final class MovieStrings {
   static const query2Sort = '&sort_by=popularity.desc';
   static const query3Release =
       '&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=2024-02-14&release_date.lte=';
+  static const recoveryImagePath = 'http://image.tmdb.org/t/p/w500/';
+
+  static String buildFavoriteUrl({
+    required String userId,
+    required String apiKey,
+    required String sessionId,
+  }) =>
+      '$_version/account/$userId/favorite?api_key=$apiKey&session_id=$sessionId';
+  static String buildGetFavoriteUrl({
+    required String userId,
+    required String apiKey,
+    required String sessionId,
+    required int page,
+  }) =>
+      '$_version/account/$userId/favorite/movies?api_key=$apiKey&session_id=$sessionId&language=en-US&sort_by=created_at.asc&page=$page';
 }

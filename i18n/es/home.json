@@ -1,6 +1,8 @@
 {
     "title": "Kueski Peliculas",
     "movies": "Peliculas",
-    "playingMovies": "En cine ahora"
+    "playingMovies": "En cine ahora",
+    "errorMessage": "Ha sucedido un error, puedes volver a cargar la aplicacion.",
+    "favorites":"Favoritos"
 
 }

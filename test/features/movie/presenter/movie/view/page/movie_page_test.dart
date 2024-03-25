@@ -6,10 +6,14 @@ import 'package:kueski_challenge/features/movie/_module/keys/movie_keys.dart';
 
 import 'package:kueski_challenge/features/movie/presenter/movie/view/page/movie_page.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
+import 'package:mocktail/mocktail.dart';
 
-import '../../../../../common/helper/widget_under.dart';
+import '../../../../../../common/helper/widget_under.dart';
+
+class MockBuildContext extends Mock implements BuildContext {}
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   late MoviesPage moviesPage;
 
   setUp(
@@ -26,7 +30,9 @@ void main() {
         'should be return a custom grid layout',
         (tester) async {
           await tester.pumpWidget(
-            WidgetUnderTest.appTest(moviesPage),
+            WidgetUnderTest.appTest(
+              moviesPage,
+            ),
           );
 
           await tester.pump();
@@ -34,7 +40,6 @@ void main() {
           final itemCount =
               tester.widgetList<KueskieCard>(find.byType(KueskieCard)).length;
 
-          await tester.tap(find.byIcon(Icons.star).first);
           await tester.tap(find.byType(GestureDetector).first);
           await tester.tap(find.byType(GestureDetector).last);
           expect(itemCount, mockData.length);
@@ -82,6 +87,7 @@ void main() {
         'should be return a custom KueskiCard',
         (tester) async {
           final kueskiCard = KueskieCard(
+            isStretch: false,
             key: Moviekeys.kueskiCard,
             imagePath: '',
             title: 'hello world',
@@ -98,6 +104,31 @@ void main() {
 
           expect(
             find.text('hello world'),
+            findsOneWidget,
+          );
+        },
+      );
+    },
+  );
+
+  group(
+    'failure case',
+    () {
+      testWidgets(
+        'should be return a failure screen',
+        (tester) async {
+          //arrange
+          const errorOrLoadingWidget = ErrorOrLoadingLayout(
+            key: Moviekeys.errorOrLoadingLayout,
+            message: 'error unexpected',
+          );
+          await tester.pumpWidget(
+            WidgetUnderTest.appTest(errorOrLoadingWidget, failure: true),
+          );
+
+          await tester.pump();
+          expect(
+            find.text('error unexpected'),
             findsOneWidget,
           );
         },

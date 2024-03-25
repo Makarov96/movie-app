@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:kueski_challenge/app/view/app.dart';
 import 'package:kueski_challenge/core/injector/environment.dart';
 import 'package:kueski_challenge/core/injector/overrides.dart';
+import 'package:kueski_challenge/features/splash_screen/domain/injector/splash_injector.dart';
 import 'package:kueski_challenge/i18n/translations.g.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
@@ -13,11 +14,15 @@ Future<void> bootstrap(Environment environment) async {
   return runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+      final prefs = await SharedPreferences.getInstance();
 
       LocaleSettings.useDeviceLocale();
       GoRouter.optionURLReflectsImperativeAPIs = true;
-      final app = ProviderScope(
-        overrides: overrides(environment),
+      final container =
+          ProviderContainer(overrides: overrides(environment, prefs));
+      container.read(SplashInjector.checker);
+      final app = UncontrolledProviderScope(
+        container: container,
         child: TranslationProvider(child: const App()),
       );
 

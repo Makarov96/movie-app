@@ -4,13 +4,16 @@ class Routes {
     required this.path,
   });
 
-  const Routes.home()
-      : name = 'home',
+  const Routes.movieRecommended()
+      : name = 'movie-recommended',
+        path = '/movie-recommended';
+  const Routes.splash()
+      : name = 'splash-screen',
         path = '/';
 
   const Routes.movie()
       : name = 'movie',
-        path = '/';
+        path = '/movie';
 
   const Routes.movieDetails()
       : name = 'movie-details',

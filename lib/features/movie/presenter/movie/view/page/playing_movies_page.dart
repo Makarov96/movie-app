@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:kueski_challenge/core/router/routes.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
+import 'package:kueski_challenge/features/movie/presenter/component/favorite/view/favorite_button.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/bloc/playing_movies_bloc.dart';
+import 'package:kueski_challenge/i18n/translations.g.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class PlayingMoviesPage extends ConsumerStatefulWidget {
@@ -35,7 +37,11 @@ class _PlayingMoviesPageState extends ConsumerState<PlayingMoviesPage> {
           gridToggle: () => switcher.togglePM(),
           itemBuilder: (context, currentInde, movie) {
             return KueskieCard(
-              onFavoritePressed: () async {},
+              isStretch: switcher.switchToGridPM,
+              favorite: FavoriteButton(
+                movieEntity: movie,
+                isStretch: switcher.switchToGridPM,
+              ),
               onPressedCard: () => context
                   .pushNamed(const Routes.movieDetails().path, extra: movie),
               imagePath: movie.fullbdPath,
@@ -48,16 +54,9 @@ class _PlayingMoviesPageState extends ConsumerState<PlayingMoviesPage> {
           },
         );
       },
-      error: (e, s) => const CircularProgressIndicator(),
-      loading: () => const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 200,
-          ),
-          CircularProgressIndicator(),
-        ],
+      loading: () => const ErrorOrLoadingLayout(),
+      error: (e, s) => ErrorOrLoadingLayout(
+        message: context.texts.home.errorMessage,
       ),
     );
   }

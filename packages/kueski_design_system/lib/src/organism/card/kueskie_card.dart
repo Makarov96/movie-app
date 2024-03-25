@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class KueskieCard extends StatelessWidget {
-  const KueskieCard({
-    super.key,
-    this.isFavorite = false,
-    this.onFavoritePressed,
-    this.onPressedCard,
-    required this.imagePath,
-    required this.title,
-    required this.popularity,
-    required this.voteCount,
-    required this.voteAverage,
-    required this.movieId,
-  });
+  const KueskieCard(
+      {super.key,
+      this.favorite,
+      this.onPressedCard,
+      required this.imagePath,
+      required this.title,
+      required this.popularity,
+      required this.voteCount,
+      required this.voteAverage,
+      required this.movieId,
+      required this.isStretch});
 
-  final VoidCallback? onFavoritePressed;
+  final Widget? favorite;
   final VoidCallback? onPressedCard;
   final String imagePath;
   final String title;
   final double popularity;
   final int voteCount;
   final double voteAverage;
-  final bool isFavorite;
+  final bool isStretch;
+
   final String movieId;
   @override
   Widget build(BuildContext context) {
@@ -87,22 +87,13 @@ class KueskieCard extends StatelessWidget {
           ),
         ),
         Align(
-          alignment: Alignment.topRight,
-          child: FloatingActionButton.small(
-            heroTag: Key(movieId),
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            onPressed: onFavoritePressed,
-            backgroundColor: Colors.white.withOpacity(
-              0.4,
-            ),
-            child: Icon(
-              Icons.star,
-              color: isFavorite ? Colors.yellow : Colors.white.withOpacity(0.6),
-            ),
-          ),
+          alignment: isStretch ? Alignment.topRight : Alignment.bottomCenter,
+          child: isStretch
+              ? favorite
+              : Padding(
+                  padding: const EdgeInsets.only(bottom: 100),
+                  child: favorite,
+                ),
         ),
       ],
     );

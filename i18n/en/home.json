@@ -1,6 +1,8 @@
 {
     "title": "Kueski Movie",
     "movies": "Movies",
-    "playingMovies": "Playing Movies"
+    "playingMovies": "Playing Movies",
+    "errorMessage": "Something went wrong, you could try to close and open the app again.",
+    "favorites":"Favorites"
 
 }
