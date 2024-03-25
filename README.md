@@ -97,9 +97,9 @@ This project has apk and ipa in the summary of the last github action build, in 
 
 You can download this app using Diawi
 
-- IOS 📱: https://i.diawi.com/TTc4CF
-- Android 🤖: https://i.diawi.com/TnzBzY
-- How does it work? ⛏️: https://youtu.be/o1slaQuDMSI
+- IOS 📱: https://i.diawi.com/P1rgHQ
+- Android 🤖: https://i.diawi.com/QwK4DP
+- How does it work? ⛏️: https://youtu.be/HCmKJor4o_8
 
 [coverage_badge]: coverage_badge.svg
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
