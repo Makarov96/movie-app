@@ -55,8 +55,12 @@ class MovieEntity extends Equatable {
 }
 
 extension AddExtract on MovieEntity {
-  String get fullPath => '${MovieStrings.recoveryImagePath}$posterPath';
-  String get fullbdPath => '${MovieStrings.recoveryImagePath}$backdropPath';
+  String get fullPath => posterPath == MovieStrings.alternativeImage
+      ? MovieStrings.alternativeImage
+      : '${MovieStrings.recoveryImagePath}$posterPath';
+  String get fullbdPath => backdropPath == MovieStrings.alternativeImage
+      ? backdropPath
+      : '${MovieStrings.recoveryImagePath}$backdropPath';
 }
 
 extension ConverToJson on MovieEntity {
@@ -82,9 +86,9 @@ extension ConverToJson on MovieEntity {
   }
 }
 
-extension Exist on List<MovieEntity> {
+extension Exist on List<int> {
   bool existMovie({required int movieId}) {
     final map = asMap();
-    return map.values.any((checker) => checker.id == movieId);
+    return map.values.any((checker) => checker == movieId);
   }
 }

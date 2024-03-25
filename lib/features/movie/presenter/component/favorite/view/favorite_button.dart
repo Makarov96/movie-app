@@ -8,23 +8,25 @@ import 'package:mobile_dependencies/mobile_dependencies.dart';
 class FavoriteButton extends ConsumerWidget {
   const FavoriteButton({
     super.key,
-    required this.id,
+    required this.movieEntity,
   });
-  final int id;
+  final MovieEntity movieEntity;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final watcher = ref
         .watch(MovieInjector.getFavoriteMovies)
-        .items
-        .existMovie(movieId: id);
+        .cpMovies
+        .existMovie(movieId: movieEntity.id);
     return KueskiFavoriteButton(
-      id: id.toString(),
+      id: movieEntity.id.toString(),
       onPressed: () async {
         await ref
             .read(MovieInjector.addFavoriteMovie)
-            .addFavoriteMovie(id: id, toggle: !watcher);
-        ref.read(MovieInjector.getFavoriteMovies).getList();
+            .addFavoriteMovie(id: movieEntity.id, toggle: !watcher);
+        ref
+            .read(MovieInjector.getFavoriteMovies)
+            .addNewFavoriteMovie(movieEntity);
       },
       isFavorite: watcher,
     );

@@ -1,5 +1,5 @@
 class FavoriteMovieModel {
-  FavoriteMovieModel({
+  const FavoriteMovieModel({
     required this.mediaId,
     this.favorite = true,
     this.mediaType = 'movie',

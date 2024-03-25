@@ -32,21 +32,24 @@ class MovieHome extends StatelessWidget {
           ),
         ),
         body: const MovieLayoutHome(),
-        drawer: KueskiDrawer(
-          title: context.texts.home.title,
-          listTiles: [
-            ListTile(
-              title: Text(context.texts.home.favorites),
-              leading: const Icon(Icons.favorite),
-              onTap: () {
-                context.pushNamed(const Routes.movieRecommended().name,
-                    extra: false);
-                Navigator.of(context).pop();
-              },
-            ),
-            // Add more menu items here
-          ],
-        ),
+        drawer: Consumer(builder: (context, ref, widget) {
+          return KueskiDrawer(
+            title: context.texts.home.title,
+            listTiles: [
+              ListTile(
+                title: Text(context.texts.home.favorites),
+                leading: const Icon(Icons.favorite),
+                onTap: () async {
+                  context.pushNamed(const Routes.movieRecommended().name,
+                      extra: false);
+                  Navigator.of(context).pop();
+                  //   await ref.read(MovieInjector.getFavoriteMovies).getList();
+                },
+              ),
+              // Add more menu items here
+            ],
+          );
+        }),
       ),
     );
   }

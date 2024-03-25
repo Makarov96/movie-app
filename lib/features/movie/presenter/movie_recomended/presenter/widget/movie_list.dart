@@ -3,14 +3,34 @@ import 'package:kueski_challenge/core/router/routes.dart';
 import 'package:kueski_challenge/core/utils/status.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
+import 'package:kueski_challenge/features/movie/presenter/component/favorite/view/bloc/get_favorite_list.dart';
 import 'package:kueski_challenge/i18n/translations.g.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
-class MovieList extends ConsumerWidget {
+class MovieList extends ConsumerStatefulWidget {
   const MovieList({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _MovieListState();
+}
+
+class _MovieListState extends ConsumerState<MovieList> {
+  late ScrollController controller = ScrollController()..addListener(_listener);
+
+  _listener() {
+    final offsetPosition =
+        controller.offset + 75 >= controller.position.maxScrollExtent;
+    final outOfRange = controller.position.outOfRange;
+
+    if (offsetPosition && !outOfRange) {
+      if (GetFavoriteList.currentPage < GetFavoriteList.totalPages) {
+        ref.read(MovieInjector.getFavoriteMovies).getList();
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     var record = ref.watch(MovieInjector.getFavoriteMovies).status;
 
     return switch (record.status) {
@@ -20,6 +40,7 @@ class MovieList extends ConsumerWidget {
           message: context.texts.recommended.errorMessage,
         ),
       Status.success => ListView.builder(
+          controller: controller,
           padding: const EdgeInsets.symmetric(
             horizontal: 18,
           ).copyWith(bottom: 200),

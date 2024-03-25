@@ -52,11 +52,36 @@ class MockMovieRepository extends Mock implements MovieRepository {
       HttpResult<bool>.ok(true, 200);
 }
 
+final unexpected = Exception('unexpected-error');
+
+class MockFailureMovieRepository extends Mock implements MovieRepository {
+  @override
+  Future<HttpResult<MovieResultEntity>> getMovies({int page = 1}) async =>
+      HttpResult<MovieResultEntity>.err(400, unexpected);
+
+  @override
+  Future<HttpResult<MovieResultEntity>> playingMovies({int page = 1}) async =>
+      HttpResult<MovieResultEntity>.err(400, unexpected);
+
+  @override
+  Future<HttpResult<MovieResultEntity>> getFavoritesMovies(
+          {int page = 1}) async =>
+      HttpResult<MovieResultEntity>.err(400, unexpected);
+  @override
+  Future<HttpResult<bool>> addFavoriteMovie(
+          {required FavoriteMovieModel movie}) async =>
+      HttpResult<bool>.err(400, unexpected);
+}
+
 class WidgetUnderTest {
-  static Widget appTest(Widget element) {
+  static Widget appTest(Widget element, {bool failure = false}) {
     return ProviderScope(
       overrides: [
-        MovieInjector.movieRepository.overrideWithValue(MockMovieRepository())
+        failure
+            ? MovieInjector.movieRepository
+                .overrideWithValue(MockFailureMovieRepository())
+            : MovieInjector.movieRepository
+                .overrideWithValue(MockMovieRepository())
       ],
       child: TranslationProvider(
           child: _AppTestWhioutDefaultBundle(

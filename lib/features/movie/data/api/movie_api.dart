@@ -58,7 +58,7 @@ class MovieApi extends MovieRepository {
 
   @override
   Future<HttpResult<MovieResultEntity>> getFavoritesMovies(
-      {int page = 1}) async {
+      {int page = 0}) async {
     final path = MovieStrings.buildGetFavoriteUrl(
         userId: _env.accountID,
         apiKey: _env.apiKey,

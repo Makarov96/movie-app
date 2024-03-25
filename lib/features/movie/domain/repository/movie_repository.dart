@@ -13,7 +13,7 @@ abstract class MovieRepository {
     int page = 1,
   });
   Future<HttpResult<MovieResultEntity>> getFavoritesMovies({
-    int page = 1,
+    int page = 0,
   });
   Future<HttpResult<bool>> addFavoriteMovie({
     required FavoriteMovieModel movie,

@@ -38,7 +38,7 @@ class _PlayingMoviesPageState extends ConsumerState<PlayingMoviesPage> {
           itemBuilder: (context, currentInde, movie) {
             return KueskieCard(
               favorite: FavoriteButton(
-                id: movie.id,
+                movieEntity: movie,
               ),
               onPressedCard: () => context
                   .pushNamed(const Routes.movieDetails().path, extra: movie),
