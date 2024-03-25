@@ -3,7 +3,7 @@ import 'package:kueski_challenge/core/router/routes.dart';
 import 'package:kueski_challenge/core/utils/status.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
-import 'package:kueski_challenge/features/movie/presenter/component/favorite/view/bloc/get_favorite_list.dart';
+import 'package:kueski_challenge/features/movie/presenter/movie_recomended/presenter/bloc/get_favorite_list.dart';
 import 'package:kueski_challenge/i18n/translations.g.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
@@ -24,7 +24,7 @@ class _MovieListState extends ConsumerState<MovieList> {
 
     if (offsetPosition && !outOfRange) {
       if (GetFavoriteList.currentPage < GetFavoriteList.totalPages) {
-        ref.read(MovieInjector.getFavoriteMovies).getList();
+        ref.read(MovieInjector.getFavoriteMovies).getList(isListener: true);
       }
     }
   }

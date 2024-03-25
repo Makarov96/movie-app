@@ -20,7 +20,9 @@ Future<void> bootstrap(Environment environment) async {
       GoRouter.optionURLReflectsImperativeAPIs = true;
       final container =
           ProviderContainer(overrides: overrides(environment, prefs));
-      container.read(MovieInjector.getFavoriteMovies).getList();
+      container
+          .read(MovieInjector.getFavoriteMovies)
+          .getList(isListener: false);
       final app = UncontrolledProviderScope(
         container: container,
         child: TranslationProvider(child: const App()),
