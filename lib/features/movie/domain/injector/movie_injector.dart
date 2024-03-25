@@ -2,7 +2,7 @@ import 'package:kueski_challenge/core/injector/providers.dart';
 import 'package:kueski_challenge/features/movie/data/api/movie_api.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/repository/movie_repository.dart';
-import 'package:kueski_challenge/features/movie/presenter/component/favorite/view/bloc/get_favorite_list.dart';
+import 'package:kueski_challenge/features/movie/presenter/movie_recomended/presenter/bloc/get_favorite_list.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/bloc/movie_bloc.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/bloc/playing_movies_bloc.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/bloc/switch_animation_grid.dart';

@@ -5,7 +5,7 @@ import 'package:kueski_challenge/features/movie/data/api/movie_api.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
 import 'package:kueski_challenge/features/movie/domain/repository/movie_repository.dart';
-import 'package:kueski_challenge/features/movie/presenter/component/favorite/view/bloc/get_favorite_list.dart';
+import 'package:kueski_challenge/features/movie/presenter/movie_recomended/presenter/bloc/get_favorite_list.dart';
 
 import '../../../../../../common/data/api_mock/api_mock.dart';
 import '../../../../../../common/helper/provider_scoper_mock.dart';
@@ -39,7 +39,9 @@ void main() {
 
           //act
           final either = await repository.getMovies(page: expectedPage++);
-          await container.read(MovieInjector.getFavoriteMovies).getList();
+          await container
+              .read(MovieInjector.getFavoriteMovies)
+              .getList(isListener: false);
           either.when(
             (statusCode, error) => expectedStatus =
                 (status: Status.error, movies: <MovieEntity>[]),
@@ -51,7 +53,10 @@ void main() {
               expect(expectedTotalPage, response.totalPages);
 
               expect(cpMovies, <int>[12345]);
-              expectedStatus = (status: Status.success, movies: items);
+              expectedStatus =
+                  (status: Status.success, movies: items.toSet().toList());
+              container.read(MovieInjector.getFavoriteMovies).status =
+                  expectedStatus;
             },
           );
 

@@ -40,10 +40,12 @@ class MovieHome extends StatelessWidget {
                 title: Text(context.texts.home.favorites),
                 leading: const Icon(Icons.favorite),
                 onTap: () async {
-                  context.pushNamed(const Routes.movieRecommended().name,
-                      extra: false);
+                  ref
+                      .read(MovieInjector.getFavoriteMovies)
+                      .getList(isListener: false);
                   Navigator.of(context).pop();
-                  //   await ref.read(MovieInjector.getFavoriteMovies).getList();
+                  await context.pushNamed(const Routes.movieRecommended().name,
+                      extra: false);
                 },
               ),
               // Add more menu items here

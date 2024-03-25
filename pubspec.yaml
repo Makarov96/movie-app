@@ -1,6 +1,6 @@
 name: kueski_challenge
 description: Kueski App.
-version: 1.0.0+1
+version: 2.0.0+1
 publish_to: none
 
 environment:

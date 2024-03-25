@@ -47,8 +47,11 @@ The above files must be content the following variables and values:
 
 ```json
 {
-  "MOVIE_API_KEY_READ_ACCESS": "YOUR_MOVIE_API_KEY_READ_ACCESS",
-  "BASE_URL": "https://api.themoviedb.org"
+  "MOVIE_API_KEY_READ_ACCESS": "YOUR_API_KEY",
+  "BASE_URL": "https://api.themoviedb.org",
+  "ACCOUNT_ID": 0000000,
+  "SESSION_ID": "YOUR_SESSION_ID",
+  "API_KEY": "YOUR_API_KEY"
 }
 ```
 
@@ -94,9 +97,9 @@ This project has apk and ipa in the summary of the last github action build, in 
 
 You can download this app using Diawi
 
-- IOS 📱: https://i.diawi.com/cgEhbi
-- Android 🤖: https://i.diawi.com/SHibB9
-- How does it work? ⛏️: https://youtu.be/dTDhCVxptLk
+- IOS 📱: https://i.diawi.com/v9Fc9N
+- Android 🤖: https://i.diawi.com/7SQdD2
+- How does it work? ⛏️: https://youtu.be/o1slaQuDMSI
 
 [coverage_badge]: coverage_badge.svg
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg

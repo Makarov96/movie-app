@@ -86,7 +86,7 @@ void main() {
 
       final bloc = container.read(MovieInjector.getFavoriteMovies);
 
-      await bloc.getList();
+      await bloc.getList(isListener: false);
       bloc.status = (movies: [], status: Status.error);
       expect(bloc.status.status, Status.error);
     });
