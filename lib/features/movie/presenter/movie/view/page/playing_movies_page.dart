@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:kueski_challenge/core/router/routes.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
-import 'package:kueski_challenge/features/movie/presenter/component/favorite/listener/status_listener.dart';
 import 'package:kueski_challenge/features/movie/presenter/component/favorite/view/favorite_button.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie/bloc/playing_movies_bloc.dart';
 import 'package:kueski_challenge/i18n/translations.g.dart';
@@ -20,12 +19,6 @@ class _PlayingMoviesPageState extends ConsumerState<PlayingMoviesPage> {
   final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    ref.listen(
-      MovieInjector.addFavoriteMovie,
-      (previous, current) {
-        StatusListener.showSnackBar(previous, current, context);
-      },
-    );
     final movieBloc = ref.watch(MovieInjector.playingMoviesBloc);
     final switcher = ref.watch(MovieInjector.switchAnimation);
     return movieBloc.when(

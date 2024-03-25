@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 32 (16 per locale)
+/// Strings: 34 (17 per locale)
 ///
-/// Built on 2024-03-25 at 00:22 UTC
+/// Built on 2024-03-25 at 03:16 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -219,6 +219,7 @@ class _TranslationsHomeEn {
 	String get movies => TranslationOverrides.string(_root.$meta, 'home.movies', {}) ?? 'Movies';
 	String get playingMovies => TranslationOverrides.string(_root.$meta, 'home.playingMovies', {}) ?? 'Playing Movies';
 	String get errorMessage => TranslationOverrides.string(_root.$meta, 'home.errorMessage', {}) ?? 'Something went wrong, you could try to close and open the app again.';
+	String get favorites => TranslationOverrides.string(_root.$meta, 'home.favorites', {}) ?? 'Favorites';
 }
 
 // Path: <root>
@@ -291,6 +292,7 @@ class _TranslationsHomeEs implements _TranslationsHomeEn {
 	@override String get movies => TranslationOverrides.string(_root.$meta, 'home.movies', {}) ?? 'Peliculas';
 	@override String get playingMovies => TranslationOverrides.string(_root.$meta, 'home.playingMovies', {}) ?? 'En cine ahora';
 	@override String get errorMessage => TranslationOverrides.string(_root.$meta, 'home.errorMessage', {}) ?? 'Ha sucedido un error, puedes volver a cargar la aplicacion.';
+	@override String get favorites => TranslationOverrides.string(_root.$meta, 'home.favorites', {}) ?? 'Favoritos';
 }
 
 /// Flat map(s) containing all translations.
@@ -315,6 +317,7 @@ extension on Translations {
 			case 'home.movies': return TranslationOverrides.string(_root.$meta, 'home.movies', {}) ?? 'Movies';
 			case 'home.playingMovies': return TranslationOverrides.string(_root.$meta, 'home.playingMovies', {}) ?? 'Playing Movies';
 			case 'home.errorMessage': return TranslationOverrides.string(_root.$meta, 'home.errorMessage', {}) ?? 'Something went wrong, you could try to close and open the app again.';
+			case 'home.favorites': return TranslationOverrides.string(_root.$meta, 'home.favorites', {}) ?? 'Favorites';
 			default: return null;
 		}
 	}
@@ -339,6 +342,7 @@ extension on _TranslationsEs {
 			case 'home.movies': return TranslationOverrides.string(_root.$meta, 'home.movies', {}) ?? 'Peliculas';
 			case 'home.playingMovies': return TranslationOverrides.string(_root.$meta, 'home.playingMovies', {}) ?? 'En cine ahora';
 			case 'home.errorMessage': return TranslationOverrides.string(_root.$meta, 'home.errorMessage', {}) ?? 'Ha sucedido un error, puedes volver a cargar la aplicacion.';
+			case 'home.favorites': return TranslationOverrides.string(_root.$meta, 'home.favorites', {}) ?? 'Favoritos';
 			default: return null;
 		}
 	}
