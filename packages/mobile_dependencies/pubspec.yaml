@@ -24,6 +24,8 @@ dependencies:
     path: ../kueski_http
   kueski_design_system:
     path: ../kueski_design_system
+  kueski_preferences:
+    path: ../kueski_preferences
 
 
 

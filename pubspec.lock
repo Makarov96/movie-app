@@ -242,6 +242,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  kueski_preferences:
+    dependency: transitive
+    description:
+      path: "packages/kueski_preferences"
+      relative: true
+    source: path
+    version: "0.0.1"
   leak_tracker:
     dependency: transitive
     description:
