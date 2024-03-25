@@ -10,15 +10,17 @@ class GetFavoriteList extends ChangeNotifier {
     required MovieRepository movieRepository,
   }) : _movieRepository = movieRepository;
 
-  static int currentPage = 1;
+  static int currentPage = 0;
   static int totalPages = 0;
   List<MovieEntity> items = [];
+  List<int> cpMovies = [];
   ({Status status, List<MovieEntity> movies}) status =
       (status: Status.init, movies: <MovieEntity>[]);
 
   Future<void> getList() async {
     status = (status: Status.init, movies: <MovieEntity>[]);
-    final either = await _movieRepository.getFavoritesMovies();
+    final either =
+        await _movieRepository.getFavoritesMovies(page: currentPage += 1);
 
     either.when(
       (statusCode, error) =>
@@ -27,9 +29,20 @@ class GetFavoriteList extends ChangeNotifier {
       (response) {
         totalPages = response.totalPages;
         items = response.results;
+        cpMovies = items.map((e) => e.id).toList();
         status = (status: Status.success, movies: items);
       },
     );
+
+    notifyListeners();
+  }
+
+  void addNewFavoriteMovie(MovieEntity movie) {
+    if (cpMovies.existMovie(movieId: movie.id)) {
+      cpMovies = cpMovies..remove(movie.id);
+    } else {
+      cpMovies.add(movie.id);
+    }
 
     notifyListeners();
   }

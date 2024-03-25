@@ -6,8 +6,11 @@ import 'package:kueski_challenge/features/movie/_module/keys/movie_keys.dart';
 
 import 'package:kueski_challenge/features/movie/presenter/movie/view/page/movie_page.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
+import 'package:mocktail/mocktail.dart';
 
-import '../../../../../common/helper/widget_under.dart';
+import '../../../../../../common/helper/widget_under.dart';
+
+class MockBuildContext extends Mock implements BuildContext {}
 
 void main() {
   late MoviesPage moviesPage;
@@ -98,6 +101,31 @@ void main() {
 
           expect(
             find.text('hello world'),
+            findsOneWidget,
+          );
+        },
+      );
+    },
+  );
+
+  group(
+    'failure case',
+    () {
+      testWidgets(
+        'should be return a failure screen',
+        (tester) async {
+          //arrange
+          const errorOrLoadingWidget = ErrorOrLoadingLayout(
+            key: Moviekeys.errorOrLoadingLayout,
+            message: 'error unexpected',
+          );
+          await tester.pumpWidget(
+            WidgetUnderTest.appTest(errorOrLoadingWidget, failure: true),
+          );
+
+          await tester.pump();
+          expect(
+            find.text('error unexpected'),
             findsOneWidget,
           );
         },

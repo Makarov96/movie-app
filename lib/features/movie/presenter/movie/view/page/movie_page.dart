@@ -40,7 +40,7 @@ class _MoviesPageState extends ConsumerState<MoviesPage> {
             return KueskieCard(
               key: Moviekeys.kueskiCard,
               favorite: FavoriteButton(
-                id: movie.id,
+                movieEntity: movie,
               ),
               onPressedCard: () => context
                   .pushNamed(const Routes.movieDetails().path, extra: movie),
@@ -56,6 +56,7 @@ class _MoviesPageState extends ConsumerState<MoviesPage> {
       },
       loading: () => const ErrorOrLoadingLayout(),
       error: (e, s) => ErrorOrLoadingLayout(
+        key: Moviekeys.errorOrLoadingLayout,
         message: context.texts.home.errorMessage,
       ),
     );

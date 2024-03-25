@@ -8,6 +8,8 @@ void main() {
     expect('', mockEnvironment.apiKey);
     expect(true, mockEnvironment.enableLogging);
     expect('', mockEnvironment.baseUrl);
+    expect('', mockEnvironment.readAccess);
+    expect('', mockEnvironment.sessionID);
+    expect('', mockEnvironment.accountID);
   });
-  // Similar tests can be written for apiKey and baseUrl
 }
