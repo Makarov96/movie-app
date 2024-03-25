@@ -1,5 +1,8 @@
+import 'package:kueski_challenge/features/movie/data/model/favorite_movie_model.dart';
 import 'package:kueski_challenge/features/movie/data/model/movie_result.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
+import 'package:kueski_challenge/features/movie/domain/entity/movie_result_entity.dart';
+import 'package:kueski_challenge/features/movie/domain/repository/movie_repository.dart';
 
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 import 'package:mocktail/mocktail.dart';
@@ -65,7 +68,58 @@ final class MockHttpSuccess implements Http {
           as HttpResult<T>);
 }
 
+class MockMovieRepository extends Mock implements MovieRepository {
+  @override
+  Future<HttpResult<MovieResultEntity>> getMovies({int page = 1}) async =>
+      HttpResult<MovieResultEntity>.ok(_mockMovieResult, 200);
+
+  @override
+  Future<HttpResult<MovieResultEntity>> playingMovies({int page = 1}) async =>
+      HttpResult<MovieResultEntity>.ok(_mockMovieResult, 200);
+
+  @override
+  Future<HttpResult<MovieResultEntity>> getFavoritesMovies(
+          {int page = 1}) async =>
+      HttpResult<MovieResultEntity>.ok(_mockMovieResult, 200);
+  @override
+  Future<HttpResult<bool>> addFavoriteMovie(
+          {required FavoriteMovieModel movie}) async =>
+      HttpResult<bool>.ok(true, 200);
+}
+
+final unexpected = Exception('unexpected-error');
+
+class MockFailureMovieRepository extends Mock implements MovieRepository {
+  @override
+  Future<HttpResult<MovieResultEntity>> getMovies({int page = 1}) async =>
+      HttpResult<MovieResultEntity>.err(400, unexpected);
+
+  @override
+  Future<HttpResult<MovieResultEntity>> playingMovies({int page = 1}) async =>
+      HttpResult<MovieResultEntity>.err(400, unexpected);
+
+  @override
+  Future<HttpResult<MovieResultEntity>> getFavoritesMovies(
+          {int page = 1}) async =>
+      HttpResult<MovieResultEntity>.err(400, unexpected);
+  @override
+  Future<HttpResult<bool>> addFavoriteMovie(
+          {required FavoriteMovieModel movie}) async =>
+      HttpResult<bool>.err(400, unexpected);
+}
+
 final class ApiMockInit {
   static final MockHttp mockHttp = MockHttp();
   static final MockHttpSuccess mockSuccessHttp = MockHttpSuccess();
+}
+
+final class ApiDataMock {
+  static MovieEntity getMovieEntity() => _mockEntity;
+  static MovieResultModel getMovieEntityResult() => _mockMovieResult;
+}
+
+final class MovieRepositoryMock {
+  static MovieRepository mockSuccessRepository() => MockMovieRepository();
+  static MovieRepository mockFailureRepository() =>
+      MockFailureMovieRepository();
 }

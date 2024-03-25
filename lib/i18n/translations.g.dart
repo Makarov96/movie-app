@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 34 (17 per locale)
+/// Strings: 36 (18 per locale)
 ///
-/// Built on 2024-03-25 at 03:16 UTC
+/// Built on 2024-03-25 at 21:55 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -249,6 +249,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   // Translations
   late final _TranslationsRecommendedEn recommended =
       _TranslationsRecommendedEn._(_root);
+  late final _TranslationsComponentEn component =
+      _TranslationsComponentEn._(_root);
   late final _TranslationsDetailsEn details = _TranslationsDetailsEn._(_root);
   late final _TranslationsHomeEn home = _TranslationsHomeEn._(_root);
 }
@@ -278,6 +280,18 @@ class _TranslationsRecommendedEn {
       TranslationOverrides.string(
           _root.$meta, 'recommended.warningTitle', {}) ??
       'Do you want to see this screen again?';
+}
+
+// Path: component
+class _TranslationsComponentEn {
+  _TranslationsComponentEn._(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  String get addFAvorites =>
+      TranslationOverrides.string(_root.$meta, 'component.addFAvorites', {}) ??
+      'Add to favorites movies';
 }
 
 // Path: details
@@ -367,6 +381,9 @@ class _TranslationsEs implements Translations {
   late final _TranslationsRecommendedEs recommended =
       _TranslationsRecommendedEs._(_root);
   @override
+  late final _TranslationsComponentEs component =
+      _TranslationsComponentEs._(_root);
+  @override
   late final _TranslationsDetailsEs details = _TranslationsDetailsEs._(_root);
   @override
   late final _TranslationsHomeEs home = _TranslationsHomeEs._(_root);
@@ -403,6 +420,20 @@ class _TranslationsRecommendedEs implements _TranslationsRecommendedEn {
       TranslationOverrides.string(
           _root.$meta, 'recommended.warningTitle', {}) ??
       '¿Te gustaria ver de nuevo al iniciar esta pantalla?';
+}
+
+// Path: component
+class _TranslationsComponentEs implements _TranslationsComponentEn {
+  _TranslationsComponentEs._(this._root);
+
+  @override
+  final _TranslationsEs _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get addFAvorites =>
+      TranslationOverrides.string(_root.$meta, 'component.addFAvorites', {}) ??
+      'Agregar a favoritos';
 }
 
 // Path: details
@@ -499,6 +530,10 @@ extension on Translations {
         return TranslationOverrides.string(
                 _root.$meta, 'recommended.warningTitle', {}) ??
             'Do you want to see this screen again?';
+      case 'component.addFAvorites':
+        return TranslationOverrides.string(
+                _root.$meta, 'component.addFAvorites', {}) ??
+            'Add to favorites movies';
       case 'details.popularity':
         return TranslationOverrides.string(
                 _root.$meta, 'details.popularity', {}) ??
@@ -572,6 +607,10 @@ extension on _TranslationsEs {
         return TranslationOverrides.string(
                 _root.$meta, 'recommended.warningTitle', {}) ??
             '¿Te gustaria ver de nuevo al iniciar esta pantalla?';
+      case 'component.addFAvorites':
+        return TranslationOverrides.string(
+                _root.$meta, 'component.addFAvorites', {}) ??
+            'Agregar a favoritos';
       case 'details.popularity':
         return TranslationOverrides.string(
                 _root.$meta, 'details.popularity', {}) ??

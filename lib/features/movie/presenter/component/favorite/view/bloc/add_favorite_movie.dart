@@ -11,7 +11,10 @@ class AddFavoriteMovieBloc extends ChangeNotifier {
     required MovieRepository movieRepository,
   }) : _movieRepository = movieRepository;
 
-  Future<void> addFavoriteMovie({required int id, required bool toggle}) async {
+  Future<void> addFavoriteMovie({
+    required int id,
+    required bool toggle,
+  }) async {
     status = Status.init;
     final either = await _movieRepository.addFavoriteMovie(
       movie: FavoriteMovieModel(mediaId: id, favorite: toggle),
@@ -22,6 +25,14 @@ class AddFavoriteMovieBloc extends ChangeNotifier {
       (validation) =>
           validation ? status = Status.success : status = Status.error,
     );
+
+    notifyListeners();
+  }
+
+  Future<void> removeFavoriteMove({
+    required int id,
+  }) async {
+    await addFavoriteMovie(id: id, toggle: false);
 
     notifyListeners();
   }

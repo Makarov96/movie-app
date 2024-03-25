@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kueski_challenge/core/injector/environment.dart';
-import 'package:kueski_challenge/core/utils/status.dart';
 import 'package:kueski_challenge/features/movie/data/api/movie_api.dart';
 import 'package:kueski_challenge/features/movie/domain/entity/movie_entity.dart';
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
 import 'package:kueski_challenge/features/movie/domain/repository/movie_repository.dart';
 import 'package:kueski_challenge/features/movie/presenter/movie_recomended/presenter/bloc/get_favorite_list.dart';
+import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 import '../../../../../../common/data/api_mock/api_mock.dart';
 import '../../../../../../common/helper/provider_scoper_mock.dart';
@@ -28,8 +28,7 @@ void main() {
       test(
         'should be return a copy list',
         () async {
-          ({Status status, List<MovieEntity> movies}) expectedStatus =
-              (status: Status.success, movies: <MovieEntity>[]);
+          var expectedStatus = const AsyncValue.data(<MovieEntity>[]);
           //arrange
           final container = createContainer(overrides: [
             MovieInjector.getFavoriteMovies.overrideWith(
@@ -40,28 +39,24 @@ void main() {
           //act
           final either = await repository.getMovies(page: expectedPage++);
           await container
-              .read(MovieInjector.getFavoriteMovies)
-              .getList(isListener: false);
+              .read(MovieInjector.getFavoriteMovies.notifier)
+              .getList();
           either.when(
             (statusCode, error) => expectedStatus =
-                (status: Status.error, movies: <MovieEntity>[]),
-            () => expectedStatus =
-                (status: Status.loading, movies: <MovieEntity>[]),
+                AsyncValue.error(error ?? Exception(), StackTrace.current),
+            () => expectedStatus = const AsyncValue.data([]),
             (response) {
               cpMovies = response.results.map((e) => e.id).toList();
               items = response.results;
               expect(expectedTotalPage, response.totalPages);
 
               expect(cpMovies, <int>[12345]);
-              expectedStatus =
-                  (status: Status.success, movies: items.toSet().toList());
-              container.read(MovieInjector.getFavoriteMovies).status =
-                  expectedStatus;
+              expectedStatus = AsyncValue.data(items);
             },
           );
 
-          expect(container.read(MovieInjector.getFavoriteMovies).status,
-              expectedStatus);
+          expect(container.read(MovieInjector.getFavoriteMovies).value,
+              expectedStatus.value);
         },
       );
     },

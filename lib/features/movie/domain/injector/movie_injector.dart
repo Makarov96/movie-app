@@ -16,7 +16,8 @@ extension MovieInjector on Never {
         env: ref.read(Providers.enviroment)),
   );
 
-  static final getFavoriteMovies = ChangeNotifierProvider(
+  static final getFavoriteMovies = StateNotifierProvider.autoDispose<
+      GetFavoriteList, AsyncValue<List<MovieEntity>>>(
     (ref) => GetFavoriteList(
       movieRepository: ref.read(movieRepository),
     ),
