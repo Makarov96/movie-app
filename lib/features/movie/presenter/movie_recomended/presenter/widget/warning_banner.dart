@@ -36,21 +36,31 @@ class WarningBanner extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          Wrap(
-            spacing: 30,
-            children: [
-              ElevatedButton(
-                onPressed: () =>
-                    context.pushReplacementNamed(const Routes.movie().name),
-                child: Text(context.texts.recommended.goToHome),
-              ),
-              ElevatedButton(
-                onPressed: () =>
-                    context.pushReplacementNamed(const Routes.movie().name),
-                child: Text(context.texts.recommended.keepWatching),
-              )
-            ],
-          )
+          Consumer(builder: (context, ref, widget) {
+            return Wrap(
+              spacing: 30,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    ref
+                        .read(PrefsInjector.favoriteMoviesCheckerProvider)
+                        .saveShowFavoriteScreen(show: false);
+                    context.pushReplacementNamed(const Routes.movie().name);
+                  },
+                  child: Text(context.texts.recommended.goToHome),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    ref
+                        .read(PrefsInjector.favoriteMoviesCheckerProvider)
+                        .saveShowFavoriteScreen(show: true);
+                    context.pushReplacementNamed(const Routes.movie().name);
+                  },
+                  child: Text(context.texts.recommended.keepWatching),
+                )
+              ],
+            );
+          })
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kueski_challenge/core/router/router.dart';
+
 import 'package:kueski_challenge/features/movie/domain/injector/movie_injector.dart';
+import 'package:kueski_challenge/features/splash_screen/presenter/listeners/splash_listener.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
 class SplashScreen extends ConsumerWidget {
@@ -13,16 +14,8 @@ class SplashScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(
       MovieInjector.getFavoriteMovies,
-      (previus, current) {
-        if (current.items.isNotEmpty) {
-          context.pushReplacementNamed(const Routes.movieRecommended().name,
-              extra: true);
-          return;
-        } else {
-          context.pushReplacementNamed(const Routes.movie().name);
-          return;
-        }
-      },
+      (previus, current) =>
+          SplashListener.listener(previus, current, context, ref),
     );
     return const Scaffold(
       body: Center(

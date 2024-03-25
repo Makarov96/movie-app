@@ -14,10 +14,12 @@ Future<void> bootstrap(Environment environment) async {
   return runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+      final prefs = await SharedPreferences.getInstance();
 
       LocaleSettings.useDeviceLocale();
       GoRouter.optionURLReflectsImperativeAPIs = true;
-      final container = ProviderContainer(overrides: overrides(environment));
+      final container =
+          ProviderContainer(overrides: overrides(environment, prefs));
       container.read(MovieInjector.getFavoriteMovies).getList();
       final app = UncontrolledProviderScope(
         container: container,

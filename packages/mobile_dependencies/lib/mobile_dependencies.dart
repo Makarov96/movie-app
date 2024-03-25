@@ -1,6 +1,7 @@
 //own packages
 export 'package:kueski_http/kueski_http.dart';
 export 'package:kueski_design_system/kueski_design_system.dart';
+export 'package:kueski_preferences/kueski_preferences.dart';
 
 //third part packages
 export 'package:dio/dio.dart';
