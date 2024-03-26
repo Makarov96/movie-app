@@ -97,8 +97,8 @@ This project has apk and ipa in the summary of the last github action build, in 
 
 You can download this app using Diawi
 
-- IOS 📱: https://i.diawi.com/P1rgHQ
-- Android 🤖: https://i.diawi.com/QwK4DP
+- IOS 📱: https://i.diawi.com/9gttEQ
+- Android 🤖: https://i.diawi.com/u673Ks
 - How does it work? ⛏️: https://youtu.be/HCmKJor4o_8
 
 [coverage_badge]: coverage_badge.svg
