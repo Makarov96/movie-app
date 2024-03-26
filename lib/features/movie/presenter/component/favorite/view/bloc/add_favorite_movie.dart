@@ -33,7 +33,5 @@ class AddFavoriteMovieBloc extends ChangeNotifier {
     required int id,
   }) async {
     await addFavoriteMovie(id: id, toggle: false);
-
-    notifyListeners();
   }
 }
