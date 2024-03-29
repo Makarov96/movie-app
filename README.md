@@ -91,7 +91,7 @@ Alternatively, run `flutter run` and code generation will take place automatical
 ## Artifacts 📦
 
 This project has apk and ipa in the summary of the last github action build, in the following link you can checked:
-[action](https://github.com/Makarov96/kueski-challenge/actions/runs/8428608411)
+[action](https://github.com/Makarov96/kueski-challenge/actions/runs/8430973725)
 
 ### also
 
