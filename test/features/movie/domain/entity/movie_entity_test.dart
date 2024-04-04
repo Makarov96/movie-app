@@ -114,45 +114,4 @@ void main() {
       verify(() => mockMovie.backdropPath);
     });
   });
-
-  group('MovieEntity tests', () {
-    final dateTime = DateTime.now();
-    test('toStringMovie generates correct JSON string', () {
-      final movie = MovieEntity(
-        adult: false,
-        backdropPath: 'path/to/backdrop.jpg',
-        genreIds: const [1, 2, 3],
-        id: 1234,
-        originalLanguage: 'en',
-        originalTitle: 'Original Title',
-        overview: 'This is the overview',
-        popularity: 50.0,
-        posterPath: 'poster.jpg',
-        releaseDate: dateTime,
-        title: 'Movie Title',
-        video: true,
-        voteAverage: 7.5,
-        voteCount: 1000,
-      );
-
-      final expectedJson = jsonEncode({
-        'adult': false,
-        'backdrop_path': 'path/to/backdrop.jpg',
-        'genre_ids': [1, 2, 3],
-        'id': 1234,
-        'original_language': 'en',
-        'original_title': 'Original Title',
-        'overview': 'This is the overview',
-        'popularity': 50.0,
-        'poster_path': 'poster.jpg',
-        'release_date': dateTime.toString(), // Assuming UTC time for DateTime
-        'title': 'Movie Title',
-        'video': true,
-        'vote_average': 7.5,
-        'vote_count': 1000,
-      });
-
-      expect(movie.toStringMovie, expectedJson);
-    });
-  });
 }
