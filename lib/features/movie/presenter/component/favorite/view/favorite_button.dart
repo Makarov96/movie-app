@@ -16,7 +16,7 @@ class FavoriteButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cointains =
-        ref.read(MovieInjector.getFavoriteMovies).value?.contains(movieEntity);
+        ref.watch(MovieInjector.getFavoriteMovies).value?.contains(movieEntity);
     return KueskiButton(
       isStretch: isStretch,
       onPressed: () async {
