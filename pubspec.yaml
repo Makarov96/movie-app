@@ -1,6 +1,6 @@
 name: kueski_challenge
 description: Kueski App.
-version: 2.0.1+1
+version: 2.1.1+1
 publish_to: none
 
 environment:
@@ -24,7 +24,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.3
-  flutter_lints: ^3.0.0
+  flutter_lints: ^3.0.2
 
 
 
