@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:kueski_challenge/features/movie/_module/strings/movie_strings.dart';
 import 'package:mobile_dependencies/mobile_dependencies.dart';
 
