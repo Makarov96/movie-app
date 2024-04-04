@@ -34,6 +34,7 @@ class GetFavoriteList extends StateNotifier<AsyncValue<List<MovieEntity>>> {
   }
 
   void removeElementAt({required MovieEntity movie}) {
+    movies.removeWhere((element) => element == movie);
     state.value?.remove(movie);
     var removeList = [...state.value ?? []];
     state = AsyncValue.data([...removeList]);
