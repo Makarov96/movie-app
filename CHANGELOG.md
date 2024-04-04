@@ -13,3 +13,7 @@ V: V2.0.0
 V: V2.0.1
 
 - bugFix: snackbar appear in two times while the correct behavior is show once.
+
+V: V2.1.1
+
+- bugFix: Duplicate instances on array.
